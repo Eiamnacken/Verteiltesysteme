@@ -18,14 +18,16 @@ public class DayTimeServer {
         int port = Integer.parseInt(args[0]);
 
         try (DatagramSocket socket = new DatagramSocket(port)){
-
+            byte[] sendData = "Hallo vom Server".getBytes();
             DatagramPacket packetIn = new DatagramPacket(new byte[BUFSIZE],BUFSIZE);
-            DatagramPacket packetOut = new DatagramPacket(new byte[BUFSIZE],BUFSIZE);
+            DatagramPacket packetOut = new DatagramPacket(sendData,sendData.length);
             while (true){
 
                 socket.receive(packetIn);
-                packetOut.setData(packetIn.getData());
-                packetOut.setLength(packetIn.getLength());
+                String received = new String(packetIn.getData());
+                System.out.println(received);
+                packetOut.setData(sendData);
+                packetOut.setLength(sendData.length);
                 packetOut.setAddress(packetIn.getAddress());
                 packetOut.setPort(packetIn.getPort());
                 socket.send(packetOut);
