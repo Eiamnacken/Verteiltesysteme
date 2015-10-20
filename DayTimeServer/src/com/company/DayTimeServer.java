@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class DayTimeServer {
 
@@ -16,18 +19,16 @@ public class DayTimeServer {
         }
 
         int port = Integer.parseInt(args[0]);
-
         try (DatagramSocket socket = new DatagramSocket(port)){
-            byte[] sendData = "Hallo vom Server".getBytes();
             DatagramPacket packetIn = new DatagramPacket(new byte[BUFSIZE],BUFSIZE);
-            DatagramPacket packetOut = new DatagramPacket(sendData,sendData.length);
+            DatagramPacket packetOut = new DatagramPacket(new byte[BUFSIZE],BUFSIZE);
             while (true){
 
                 socket.receive(packetIn);
                 String received = new String(packetIn.getData());
                 System.out.println(received);
-                packetOut.setData(sendData);
-                packetOut.setLength(sendData.length);
+                packetOut.setData(LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME).getBytes());
+                packetOut.setLength(packetOut.getLength());
                 packetOut.setAddress(packetIn.getAddress());
                 packetOut.setPort(packetIn.getPort());
                 socket.send(packetOut);
