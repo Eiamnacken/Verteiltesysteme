@@ -39,12 +39,13 @@ public class Controller {
             InetAddress address = InetAddress.getByName(ip);
             DatagramPacket packetOut = new DatagramPacket(buffer,buffer.length,address,portNumber);
             packetOut.setData("Hallo an server".getBytes());
+            LocalDateTime time = LocalDateTime.now();
             socket.send(packetOut);
             DatagramPacket packetIn = new DatagramPacket(new byte[BUFSIZE],BUFSIZE);
             socket.receive(packetIn);
             String received = new String(packetIn.getData());
-            ausgabe.appendText(LocalDateTime.now().toString()+"\n");
-            ausgabe.appendText(received+"\n");
+            ausgabe.appendText(time.toString()+"\n");
+            ausgabe.appendText(received + "\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
