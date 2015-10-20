@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="EchoClient:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/EchoClient_jar</output-path>
+    <root id="archive" name="EchoClient.jar">
+      <element id="module-output" name="EchoClient" />
+    </root>
+  </artifact>
+</component>
