@@ -18,6 +18,7 @@ public class Controller {
     public TextField host;
     public TextArea ausgabe;
     private static final int BUFSIZE=508;
+    public TextField host2;
     private int portNumber;
 
 
@@ -34,10 +35,11 @@ public class Controller {
             alert.showAndWait();
         }
         String ip = host.getText();
+        String ip2 = host2.getText();
         try (DatagramSocket socket = new DatagramSocket()){
-            byte[] buffer = new byte[1];
+            byte[] buffer = new byte[0];
             InetAddress address = InetAddress.getByName(ip);
-            DatagramPacket packetOut = new DatagramPacket(buffer,buffer.length,address,portNumber);
+            DatagramPacket packetOut = new DatagramPacket(buffer,0,address,portNumber);
             packetOut.setData("Hallo an server".getBytes());
             LocalDateTime time = LocalDateTime.now();
             socket.send(packetOut);
@@ -46,6 +48,12 @@ public class Controller {
             String received = new String(packetIn.getData());
             ausgabe.appendText(time.toString()+"\n");
             ausgabe.appendText(received + "\n");
+            address = InetAddress.getByName(ip2);
+            packetOut = new DatagramPacket(buffer,buffer.length,address,portNumber);
+            socket.send(packetOut);
+            socket.receive(packetIn);
+            received = new String(packetIn.getData());
+            ausgabe.appendText(received+"\n");
         } catch (IOException e) {
             e.printStackTrace();
         }

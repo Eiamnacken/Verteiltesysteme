@@ -19,6 +19,7 @@
             <Label layoutX="251.0" layoutY="85.0" text="Host" />
             <TextArea fx:id="ausgabe" layoutX="340.0" layoutY="164.0" prefHeight="200.0" prefWidth="200.0" />
             <Label layoutX="272.0" layoutY="211.0" text="Ausgabe" />
+            <TextField fx:id="host2" layoutX="255.0" layoutY="47.0" />
          </children>
       </Pane>
    </children>

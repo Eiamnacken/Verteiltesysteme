@@ -14,7 +14,7 @@ public class DayTimeServer {
 
     public static void main(String[] args) {
         if (args.length!=1){
-            System.err.println("Usage: Java EchoServer Port");
+            System.err.println("Usage: Java Daytimeserver Port");
             return;
         }
 
@@ -25,13 +25,14 @@ public class DayTimeServer {
             while (true){
 
                 socket.receive(packetIn);
-                String received = new String(packetIn.getData());
-                System.out.println(received);
-                packetOut.setData(LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME).getBytes());
-                packetOut.setLength(packetOut.getLength());
-                packetOut.setAddress(packetIn.getAddress());
-                packetOut.setPort(packetIn.getPort());
-                socket.send(packetOut);
+                System.out.println(packetIn.getData().length);
+                if(packetIn.getLength()==0) {
+                    packetOut.setData(LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME).getBytes());
+                    packetOut.setLength(packetOut.getLength());
+                    packetOut.setAddress(packetIn.getAddress());
+                    packetOut.setPort(packetIn.getPort());
+                    socket.send(packetOut);
+                }
             }
 
 
