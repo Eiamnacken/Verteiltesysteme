@@ -34,9 +34,10 @@ public class Main {
         try {
             Path path = Paths.get("");
             String writeFile = path.toAbsolutePath().toString()+ File.separator+"zitate.json";
-            FileWriter writer = new FileWriter(writeFile);
-            writer.write(json);
-            writer.close();
+            FileOutputStream fos = new FileOutputStream(writeFile);
+            Writer out = new OutputStreamWriter(fos,"UTF8");
+            out.write(json);
+            out.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -59,7 +60,7 @@ public class Main {
             while ((input=reader.readLine())!=null&&anzahlZitate!=0){
                 if (input.contains("<blockquote>")){
                     while (!(input=reader.readLine()).contains("<small>")){
-                        zitat += cutHtml(input);
+                        zitat += cutHtml(input.replaceAll("[\t]",""));
                     }
                     autor.addZitat(zitat);
                     anzahlZitate--;
