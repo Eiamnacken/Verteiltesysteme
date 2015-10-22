@@ -16,7 +16,7 @@ public class Autor {
     }
 
     public void addZitat(String zitat){
-        this.zitate.add(zitat.replace("quo","").trim());
+        this.zitate.add(zitat.trim());
     }
 
     public String getAutor(){

@@ -85,12 +85,12 @@ public class Main {
                 while (string.charAt(i)!='>'){
                     i++;
                 }
-            }else if(string.charAt(i)=='&'&&string.charAt(i+1)=='#'){
-                StringBuilder htmlEscape = new StringBuilder(7);
-                for (int j = 0; j < 6; j++) {
-                    htmlEscape.append(string.charAt(i+j));
+            }else if(string.charAt(i)=='&'){
+                StringBuilder htmlEscape = new StringBuilder();
+                while (string.charAt(i-1)!=';'){
+                    htmlEscape.append(string.charAt(i++));
                 }
-                i+=7;
+                i--;
                 //Encode HTML Unicode in java Unicode
                 builder.append(StringEscapeUtils.unescapeHtml(htmlEscape.toString()));
 
