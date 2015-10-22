@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="gson-2.4">
+    <archive path="/home/eiamnacken/git/Verteiltesysteme/getZitate/lib/gson-2.4.jar" />
+  </library>
+</eclipse-userlibraries>
+
