@@ -28,7 +28,7 @@ public class Main {
         anzahlZitate = in.nextInt();
         autoren = new LinkedList<>();
         addAuthors();
-        autoren.forEach(r -> System.out.println(r));
+        autoren.forEach(System.out::println);
         Gson gson = new Gson();
         String json = gson.toJson(autoren);
         try {
