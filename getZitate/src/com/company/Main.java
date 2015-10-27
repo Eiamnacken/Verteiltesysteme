@@ -5,7 +5,6 @@ import org.apache.commons.lang.StringEscapeUtils;
 
 import java.io.*;
 import java.net.URL;
-import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.LinkedList;
@@ -113,7 +112,6 @@ public class Main {
 
             URL url = new URL("http://www.zitate.de/autoren");
             String input;
-            byte[] bytes;
             BufferedReader reader = new BufferedReader( new InputStreamReader(url.openStream()));
             while ((input= new String(reader.readLine().getBytes(),"UTF-8"))!=null){
                 if(input.contains("/autor/")){
