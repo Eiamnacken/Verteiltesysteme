@@ -52,7 +52,8 @@ public class Main {
                     packetOut.setData(r.getBytes());
                     try {
                         socket.send(packetOut);
-                    } catch (IOException e) {
+                        Thread.sleep(100);
+                    } catch (IOException | InterruptedException e) {
                         e.printStackTrace();
                     }
                 });

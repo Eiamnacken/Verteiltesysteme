@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76fe99cd-1b90-41ca-a164-264441718c49" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ZItateApp/src/sample/Controller.java" afterPath="$PROJECT_DIR$/../ZItateApp/src/sample/Controller.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ZitateAppServer/src/com/company/Main.java" afterPath="$PROJECT_DIR$/../ZitateAppServer/src/com/company/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Main.java" afterPath="$PROJECT_DIR$/src/com/company/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ZitateAppServer/ZitateAppServer.iml" afterPath="$PROJECT_DIR$/../ZitateAppServer/ZitateAppServer.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ZitateAppServer/.idea/misc.xml" afterPath="$PROJECT_DIR$/../ZitateAppServer/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="getZitate.iws" />
@@ -402,12 +398,12 @@
       <created>1445954123794</created>
       <option name="number" value="Default" />
       <updated>1445954123794</updated>
-      <workItem from="1445954123018" duration="12148000" />
+      <workItem from="1445954123018" duration="12315000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12148000" />
+    <option name="totallyTimeSpent" value="12315000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="7" />
