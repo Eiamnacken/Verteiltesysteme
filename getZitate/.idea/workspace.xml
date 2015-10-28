@@ -3,16 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="76fe99cd-1b90-41ca-a164-264441718c49" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ZItateApp/out/production/ZItateApp/sample/Controller.class" afterPath="$PROJECT_DIR$/../ZItateApp/out/production/ZItateApp/sample/Controller.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ZItateApp/out/production/ZItateApp/sample/Main.class" afterPath="$PROJECT_DIR$/../ZItateApp/out/production/ZItateApp/sample/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/getZitate/com/company/Main.class" afterPath="$PROJECT_DIR$/out/production/getZitate/com/company/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ZItateApp/src/sample/Controller.java" afterPath="$PROJECT_DIR$/../ZItateApp/src/sample/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ZItateApp/src/sample/Main.java" afterPath="$PROJECT_DIR$/../ZItateApp/src/sample/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ZitateAppServer/src/com/company/Main.java" afterPath="$PROJECT_DIR$/../ZitateAppServer/src/com/company/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Main.java" afterPath="$PROJECT_DIR$/src/com/company/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ZItateApp/.idea/misc.xml" afterPath="$PROJECT_DIR$/../ZItateApp/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ZitateAppServer/.idea/misc.xml" afterPath="$PROJECT_DIR$/../ZitateAppServer/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ZItateApp/out/production/ZItateApp/sample/sample.fxml" afterPath="$PROJECT_DIR$/../ZItateApp/out/production/ZItateApp/sample/sample.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ZItateApp/src/sample/sample.fxml" afterPath="$PROJECT_DIR$/../ZItateApp/src/sample/sample.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="getZitate.iws" />
@@ -415,16 +407,16 @@
       <option name="number" value="Default" />
       <updated>1445954123794</updated>
       <workItem from="1445954123018" duration="12346000" />
-      <workItem from="1445986001468" duration="1207000" />
+      <workItem from="1445986001468" duration="1761000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13553000" />
+    <option name="totallyTimeSpent" value="14107000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="1" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />

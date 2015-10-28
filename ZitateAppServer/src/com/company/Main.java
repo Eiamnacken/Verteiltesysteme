@@ -44,6 +44,7 @@ public class Main {
                 socket.receive(packetIn);
                 if(!(new String(packetIn.getData()).contains("0"))){
                     String search = new String(packetIn.getData());
+                    search.replaceAll("[/W]","");
                     zitate=getZitate(search,false);
                     break;
                 }else{
@@ -58,10 +59,9 @@ public class Main {
                 socket.send(packetOut);
             }
             socket.send(new DatagramPacket(new byte[0],0));
+            socket.close();
 
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -114,11 +114,11 @@ public class Main {
             BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
             //Wenn random nicht gefordert mache normal weiter
             if (!random) {
-                while (!(reader.readLine()).contains("fragment-"+search.charAt(0)));
+                while (!(reader.readLine()).contains("=\"fragment-"+(search.charAt(0)+"").toUpperCase()));
                 while ((string=reader.readLine())!=null){
-                    if(string.contains(search)&&string.contains("/autor/")){
+                    if(string.trim().contains(search.trim())&&string.contains("/autor/")){
                         //TODO code verdoppelung unterbinden
-                        String autorURL = string.substring(string.indexOf("/"),string.indexOf("\""));
+                        String autorURL = string.substring(string.indexOf("/"),string.lastIndexOf("\""));
                         String autor = string.substring(string.lastIndexOf("\"")+2,string.lastIndexOf("<")-4);
                         url = new URL("http://www.zitate.de"+autorURL);
                         addZitate(url,zitate);

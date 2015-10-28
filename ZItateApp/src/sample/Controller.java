@@ -45,10 +45,12 @@ public class Controller implements Initializable{
     private void search(){
         try {
             InetAddress inet = InetAddress.getByName(address);
-            DatagramPacket packetOut = new DatagramPacket(new byte[BUFSIZE],BUFSIZE,inet,port);
+            String search = searchField.getText();
+            DatagramPacket packetOut;
             if (!searchField.getText().isEmpty()) {
-                packetOut.setData(searchField.getText().getBytes());
-            }else packetOut.setData("0".getBytes());
+                packetOut = new DatagramPacket(search.getBytes(),search.length(),inet,port);
+
+            }else packetOut= new DatagramPacket("0".getBytes(),1,inet,port);
             this.socket.send(packetOut);
 
         } catch (IOException e) {
@@ -70,6 +72,7 @@ public class Controller implements Initializable{
                         String s = new String(packetIn.getData());
                         zitate.add(s);
                     }else break;
+
                 } catch (SocketException e) {
                     System.err.println(e.getMessage());
                 } catch (IOException e) {
