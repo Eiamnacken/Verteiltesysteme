@@ -24,7 +24,7 @@ public class Main {
         }
 
         int port = Integer.parseInt(args[0]);
-        startServer(9000);
+        startServer(port);
 
     }
 
@@ -58,7 +58,7 @@ public class Main {
                 System.out.println(s);
                 socket.send(packetOut);
             }
-            socket.send(new DatagramPacket(new byte[0],0));
+            socket.send(new DatagramPacket(new byte[0],0,packetIn.getAddress(),packetIn.getPort()));
             socket.close();
 
         } catch (IOException e) {

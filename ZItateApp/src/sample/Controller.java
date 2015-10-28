@@ -61,10 +61,10 @@ public class Controller implements Initializable{
 
     private void receive(){
         List<String> zitate = new LinkedList<>();
-        DatagramPacket packetIn = new DatagramPacket(new byte[BUFSIZE],BUFSIZE);
 
             while (true){
                 try {
+                    DatagramPacket packetIn = new DatagramPacket(new byte[BUFSIZE],BUFSIZE);
                     this.socket.receive(packetIn);
                     this.socket.setSoTimeout(5000);
                     System.out.println(new String(packetIn.getData()));
