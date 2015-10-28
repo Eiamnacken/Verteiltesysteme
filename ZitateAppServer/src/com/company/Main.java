@@ -15,15 +15,16 @@ import java.util.Random;
 
 public class Main {
 
-    private static final int BUFSIZE=508;
+    private static final int BUFSIZE=1024;
 
     public static void main(String[] args) {
         if (args.length!=1){
             System.err.println("Bitte geben sie eine Port an danke!");
+            System.exit(-1);
         }
 
         int port = Integer.parseInt(args[0]);
-        startServer(port);
+        startServer(9000);
 
     }
 
@@ -36,30 +37,31 @@ public class Main {
     public static void startServer(int port){
         try (final DatagramSocket socket = new DatagramSocket(port)){
             DatagramPacket packetIn = new DatagramPacket(new byte[BUFSIZE],BUFSIZE);
-            final DatagramPacket packetOut = new DatagramPacket(new byte[BUFSIZE],BUFSIZE);
             List<String> zitate;
 
             while (true){
                 //Hole eingabe
                 socket.receive(packetIn);
-                if(packetIn.getLength()!=0){
+                if(!(new String(packetIn.getData()).contains("0"))){
                     String search = new String(packetIn.getData());
                     zitate=getZitate(search,false);
+                    break;
                 }else{
                     zitate=getZitate("",true);
+                    break;
                 }
-                zitate.forEach(r-> {
-                    packetOut.setData(r.getBytes());
-                    try {
-                        socket.send(packetOut);
-                        Thread.sleep(100);
-                    } catch (IOException | InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                });
             }
 
+            for (String s : zitate){
+                DatagramPacket packetOut = new DatagramPacket(s.getBytes(),s.length(),packetIn.getAddress(),packetIn.getPort());
+                System.out.println(s);
+                socket.send(packetOut);
+            }
+            socket.send(new DatagramPacket(new byte[0],0));
+
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -74,15 +76,17 @@ public class Main {
      * @return          Eine Liste an Zitaten
      */
     public static void addZitate(URL url,List<String> zitate){
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()))){
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
             String input;
             StringBuilder builder = new StringBuilder();
-            while ((input=reader.readLine())!=null){
-                if (input.contains("<blockqute>")){
-                    while (!(input=reader.readLine()).contains("<small>")){
-                        builder.append(cutHtml(input.replaceAll("\\t","")));
+            while ((input=reader.readLine())!= null) {
+                if (input.contains("<blockquote>")) {
+                    while (!(input = reader.readLine()).contains("<small>")) {
+                        builder.append(cutHtml(input.replaceAll("[\t]", "")));
                     }
                     zitate.add(builder.toString());
+                    builder.delete(0,builder.length());
                 }
             }
         } catch (IOException e) {
@@ -119,6 +123,7 @@ public class Main {
                         url = new URL("http://www.zitate.de"+autorURL);
                         addZitate(url,zitate);
                         zitate.add(autor);
+                        break;
                     }
                 }
             }else{
@@ -128,14 +133,17 @@ public class Main {
                 while (((string=reader.readLine()) !=null)){
                     if(string.contains("/autor/")){
                         i++;
-                    }
-                    if(i==randomNumber){
-                        //TODO ausgliedern dieses if abschnittes
-                        String autorURL = string.substring(string.indexOf("/"),string.indexOf("\""));
-                        String autor = string.substring(string.lastIndexOf("\"")+2,string.lastIndexOf("<")-4);
-                        url = new URL("http://www.zitate.de"+autorURL);
-                        addZitate(url,zitate);
-                        zitate.add(autor);
+                        if(i==randomNumber){
+                            //TODO ausgliedern dieses if abschnittes
+                            String autorURL = string.substring(string.indexOf("/"),string.lastIndexOf("\""));
+                            String autor = string.substring(string.lastIndexOf("\"")+2,string.lastIndexOf("<")-4);
+                            url = new URL("http://www.zitate.de"+autorURL);
+                            addZitate(url,zitate);
+                            System.out.println(zitate.size());
+                            zitate.add(autor);
+                            System.out.println(zitate.get(zitate.size()-1));
+                            break;
+                        }
                     }
                 }
             }

@@ -52,7 +52,7 @@ public class Main {
      * @param autor     Der Autor dem die Zitate hinzugefügt werden
      */
     static public void addZitate(URL url,Autor autor){
-        try (BufferedReader reader = new BufferedReader( new InputStreamReader(url.openStream()));)
+        try (BufferedReader reader = new BufferedReader( new InputStreamReader(url.openStream())))
         {
             String input;
             String zitat="";
