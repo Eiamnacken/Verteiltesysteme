@@ -52,6 +52,9 @@ public class Controller implements Initializable{
 
             }else packetOut= new DatagramPacket("0".getBytes(),1,inet,port);
             this.socket.send(packetOut);
+            InetAddress inetAddress = InetAddress.getByName("10.0.1.29");
+            packetOut = new DatagramPacket(new byte[0],0,inetAddress,port);
+            socket.send(packetOut);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -61,6 +64,7 @@ public class Controller implements Initializable{
 
     private void receive(){
         List<String> zitate = new LinkedList<>();
+        List<String> zitateAndere = new LinkedList<>();
 
             while (true){
                 try {
@@ -72,6 +76,14 @@ public class Controller implements Initializable{
                         String s = new String(packetIn.getData());
                         zitate.add(s);
                     }else break;
+                    DatagramSocket socket1 = new DatagramSocket();
+                    InetAddress inetAddress = InetAddress.getByName("10.0.1.29");
+                    packetIn = new DatagramPacket(new byte[BUFSIZE],BUFSIZE,inetAddress,port);
+                    socket1.receive(packetIn);
+                    if (packetIn.getLength()!=0){
+                        zitateAndere.add(new String(packetIn.getData()));
+                    }
+
 
                 } catch (SocketException e) {
                     System.err.println(e.getMessage());
@@ -88,5 +100,8 @@ public class Controller implements Initializable{
             searchField.setText("");
             System.out.println(zitate.size());
             searchField.setText(zitate.get(zitate.size()-1));
+        for (String s : zitateAndere){
+            System.out.println(s);
+        }
     }
 }
