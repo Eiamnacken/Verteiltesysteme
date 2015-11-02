@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Aufgabe3-Transmitter.iml" filepath="$PROJECT_DIR$/Aufgabe3-Transmitter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TextServer.iml" filepath="$PROJECT_DIR$/TextServer.iml" />
     </modules>
   </component>
 </project>
