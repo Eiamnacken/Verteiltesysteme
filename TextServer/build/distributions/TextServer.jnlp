@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="TextServer.jnlp">
+  <information>
+    <title>TextServer</title>
+    <vendor>Unknown</vendor>
+    <description>TextServer</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="TextServer-1.0-SNAPSHOT.jar" size="14114" download="null" />
+  </resources>
+<security>
+  <all-permissions/>
+</security>
+  <jfx:javafx-desc  width="1024" height="768" main-class="Main"  name="TextServer" />
+  <update check="background"/>
+</jnlp>

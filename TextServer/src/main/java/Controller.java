@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -17,10 +16,10 @@ import java.util.ResourceBundle;
  * Created by sven on 02.11.15.
  */
 public class Controller implements Initializable{
-    @FXML
-    private TextArea displayContent;
-    @FXML
-    private ListView<String> userList;
+
+    public TextArea displayContent;
+
+    public ListView<String> userList;
 
     private Host host;
 
@@ -40,13 +39,12 @@ public class Controller implements Initializable{
     }
 
 
-    @FXML
-    private void saveFile(ActionEvent actionEvent) {
+    public void saveFile(ActionEvent actionEvent) {
         //TODO file speicher mit filechooser
     }
 
-    @FXML
-    private void openConnection(ActionEvent actionEvent) {
+
+    public void openConnection(ActionEvent actionEvent) {
         LoginOpen loginOpen = new LoginOpen();
         loginOpen.launch();
         try {
@@ -72,25 +70,25 @@ public class Controller implements Initializable{
 
     }
 
-    @FXML
-    private void privateConnection(ActionEvent actionEvent) {
+
+    public void privateConnection(ActionEvent actionEvent) {
         //TODO Alle user rauschmeßen bis auf einen listView updaten
     }
 
-    @FXML
-    private void kickUser(ActionEvent actionEvent) {
+
+    public void kickUser(ActionEvent actionEvent) {
         Kick kick = new Kick();
         String user = kick.getUser();
         host.kickUser(user);
     }
 
-    @FXML
-    private void sendText(Event event) {
+
+    public void sendText(Event event) {
         host.update(displayContent.getText());
 
     }
 
-    @Override @FXML
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }
