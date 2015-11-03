@@ -23,33 +23,35 @@ public class Controller implements Initializable{
 
     @FXML
     private void saveFile(ActionEvent actionEvent) {
-
+        //TODO file speicher mit filechooser
     }
 
     @FXML
     private void openConnection(ActionEvent actionEvent) {
         Login login = new Login();
         login.launch();
+        //TODO Neuen Host erstellen
 
 
     }
 
     @FXML
     private void privateConnection(ActionEvent actionEvent) {
+        //TODO Alle user rauschmeßen bis auf einen listView updaten
     }
 
     @FXML
     private void kickUser(ActionEvent actionEvent) {
         Kick kick = new Kick();
+        //TODO Einen User rausschmeßen listView Updten
     }
 
     @FXML
     private void sendText(Event event) {
-
+        //TODO Den Text an alle User senden
     }
 
     @Override @FXML
     public void initialize(URL location, ResourceBundle resources) {
-        this.host = new Host();
     }
 }
