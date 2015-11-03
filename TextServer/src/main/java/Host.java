@@ -1,3 +1,4 @@
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.IOException;
@@ -38,12 +39,12 @@ public class Host  extends Thread{
 
     /**
      * Beendet die verbindung mit einem User und schmeißt diesen aus der Liste
-     * @param address   Adresse des Users
+     * @param address   Adresse oder namen des Users
      * @return          True wenn der User gelöscht werden konnte false wenn er nicht gefunden werden konnte
      */
     public boolean kickUser(String address){
         for (User u : viewer){
-            if (u.getAddress().equals(address)){
+            if (u.getAddress().equals(address)||u.getNameUser().equals(address)){
                 u.disconnect();
                 viewer.remove(viewer.indexOf(u));
                 return true;
@@ -52,12 +53,15 @@ public class Host  extends Thread{
         return false;
     }
 
+
+
     /**
      * Gibt alle User aus die mit dem Host verbunden sind
      * @return  Eine Liste der User
      */
     public ObservableList<User> getViewer(){
-        return viewer;
+        ObservableList<User> list = FXCollections.observableList(viewer);
+        return list;
     }
 
     /**

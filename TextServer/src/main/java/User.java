@@ -48,9 +48,14 @@ public class User {
         return address;
     }
 
-    public User getUser(String name){
-        if (this.name.equals(name)){
-            return this;
-        }else return null;
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder(this.address.length());
+        if (this.name!=null){
+            builder.append(this.name);
+            return builder.toString();
+        }else builder.append(this.address);
+        return builder.toString();
     }
 }

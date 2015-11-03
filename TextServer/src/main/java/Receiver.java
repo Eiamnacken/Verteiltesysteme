@@ -39,7 +39,7 @@ public class Receiver {
     }
 
     public int getPort(){
-        return this.socket.g
+        return this.socket.getPort();
     }
 
     public void disconnect(){

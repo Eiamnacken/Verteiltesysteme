@@ -1,5 +1,6 @@
 import dialogs.Kick;
 import dialogs.LoginOpen;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -10,7 +11,6 @@ import javafx.scene.control.TextArea;
 
 import java.net.SocketException;
 import java.net.URL;
-import java.util.Observable;
 import java.util.ResourceBundle;
 
 /**
@@ -20,7 +20,7 @@ public class Controller implements Initializable{
     @FXML
     private TextArea displayContent;
     @FXML
-    private ListView userList;
+    private ListView<String> userList;
 
     private Host host;
 
@@ -29,12 +29,14 @@ public class Controller implements Initializable{
     }
 
     private void updateUserList(){
-        ObservableList<User> user = host.getViewer();
-        userList = new ListView(user);
+        ObservableList<String> list = FXCollections.observableArrayList();
+       for (User u : host.getViewer()){
+           list.add(u.toString());
+       }
     }
 
-    private int getUserList(){
-        return 
+    private int getUserListSize(){
+        return userList.getItems().size();
     }
 
 
@@ -59,7 +61,7 @@ public class Controller implements Initializable{
                     if (host.isReceived()){
                         updateText(host.getBuffer());
                     }
-                    if (host.getViewer().size()!=getUserList()){
+                    if (host.getViewer().size()!= getUserListSize()){
                         updateUserList();
                     }
                 }
@@ -78,7 +80,8 @@ public class Controller implements Initializable{
     @FXML
     private void kickUser(ActionEvent actionEvent) {
         Kick kick = new Kick();
-        //TODO Einen User rausschmeßen listView Updten
+        String user = kick.getUser();
+        host.kickUser(user);
     }
 
     @FXML
