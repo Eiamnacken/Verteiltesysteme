@@ -38,6 +38,10 @@ public class Receiver {
         return adress;
     }
 
+    public int getPort(){
+        return this.socket.g
+    }
+
     public void disconnect(){
         this.socket.disconnect();
     }

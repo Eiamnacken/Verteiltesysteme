@@ -1,10 +1,11 @@
+import java.io.IOException;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
 /**
  * Created by sven on 03.11.15.
  */
-public class User extends Thread{
+public class User {
 
     private String address;
     private int port;
@@ -26,6 +27,12 @@ public class User extends Thread{
     }
 
     public void disconnect(){
+        this.transmitter.disconnect();
+    }
+
+    public void send(String s) throws IOException {
+        if (s.isEmpty()) return;
+        this.transmitter.send(s);
     }
 
 

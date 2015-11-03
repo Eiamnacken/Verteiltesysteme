@@ -76,6 +76,7 @@ public class UdpSocket {
         //Wenn eine direkte Verbindung besteht nicht anpassen
         if (!this.connection) {
             this.host=packet.getAddress();
+            this.port=packet.getPort();
         //Wenn direkte Verbindung besteht überprüfen auf gleiche Adresse.
         }else if(!this.host.equals(packet.getAddress())){
             return "";
@@ -87,6 +88,7 @@ public class UdpSocket {
      * Schließt die verbindung
      */
     public void disconnect(){
+        this.connection=false;
         this.socket.disconnect();
         this.socket.close();
     }
@@ -107,5 +109,13 @@ public class UdpSocket {
      */
     public InetAddress getHost() {
         return host;
+    }
+
+    /**
+     * Gibt den Port an
+     * @return
+     */
+    public int getPort() {
+        return this.port;
     }
 }

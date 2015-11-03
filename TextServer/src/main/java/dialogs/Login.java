@@ -47,7 +47,7 @@ public class Login {
         });
         dialog.getDialogPane().setContent(grid);
         // Request focus on the username field by default.
-        Platform.runLater(() -> adresse.requestFocus());
+        Platform.runLater(adresse::requestFocus);
         // Convert the result to a username-password-pair when the login button is clicked.
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == loginButtonType) {

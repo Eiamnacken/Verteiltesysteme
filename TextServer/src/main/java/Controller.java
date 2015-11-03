@@ -1,5 +1,6 @@
 import dialogs.Kick;
-import dialogs.Login;
+import dialogs.LoginOpen;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -7,7 +8,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 
+import java.net.SocketException;
 import java.net.URL;
+import java.util.Observable;
 import java.util.ResourceBundle;
 
 /**
@@ -21,6 +24,20 @@ public class Controller implements Initializable{
 
     private Host host;
 
+    private void updateText(String s){
+        displayContent.setText(s);
+    }
+
+    private void updateUserList(){
+        ObservableList<User> user = host.getViewer();
+        userList = new ListView(user);
+    }
+
+    private int getUserList(){
+        return 
+    }
+
+
     @FXML
     private void saveFile(ActionEvent actionEvent) {
         //TODO file speicher mit filechooser
@@ -28,9 +45,27 @@ public class Controller implements Initializable{
 
     @FXML
     private void openConnection(ActionEvent actionEvent) {
-        Login login = new Login();
-        login.launch();
-        //TODO Neuen Host erstellen
+        LoginOpen loginOpen = new LoginOpen();
+        loginOpen.launch();
+        try {
+            host = new Host(Integer.parseInt(loginOpen.getPort()));
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
+        Thread t = new Thread(){
+            public void run(){
+                while (true){
+                    host.run();
+                    if (host.isReceived()){
+                        updateText(host.getBuffer());
+                    }
+                    if (host.getViewer().size()!=getUserList()){
+                        updateUserList();
+                    }
+                }
+
+            }
+        };
 
 
     }
@@ -48,10 +83,12 @@ public class Controller implements Initializable{
 
     @FXML
     private void sendText(Event event) {
-        //TODO Den Text an alle User senden
+        host.update(displayContent.getText());
+
     }
 
     @Override @FXML
     public void initialize(URL location, ResourceBundle resources) {
+
     }
 }
