@@ -1,8 +1,5 @@
 import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.SocketException;
+import java.net.*;
 
 /**
  * Created by sven on 02.11.15.
@@ -23,6 +20,10 @@ public class UdpSocket {
      * Socket für die verbindung
      */
     private DatagramSocket socket;
+    /**
+     * Für eine direkte verbindung true wenn ja
+     */
+    private boolean connection=false;
 
     /**
      * Erstellt UDPSocket für eine direkte verbindung
@@ -30,9 +31,9 @@ public class UdpSocket {
      * @param host                  Adresse an die wir direkt senden wollen
      * @throws SocketException
      */
-    public UdpSocket(int port, InetAddress host) throws SocketException {
+    public UdpSocket(int port, String host) throws SocketException, UnknownHostException {
         this.port = port;
-        this.host = host;
+        this.host = InetAddress.getByName(host);
         this.socket= new DatagramSocket(this.port);
     }
 
@@ -55,8 +56,10 @@ public class UdpSocket {
      */
     public void send(String s) throws IOException {
         DatagramPacket packet = new DatagramPacket(s.getBytes(),s.length());
-        packet.setAddress(this.host);
-        packet.setPort(this.port);
+        if (!this.connection) {
+            packet.setAddress(this.host);
+            packet.setPort(this.port);
+        }
         this.socket.send(packet);
     }
 
@@ -68,11 +71,32 @@ public class UdpSocket {
      */
     public String receive(int maxBytes) throws IOException {
         DatagramPacket packet = new DatagramPacket(new byte[maxBytes],maxBytes);
-        packet.setAddress(this.host);
-        packet.setPort(this.port);
+        if (!this.connection) {
+            packet.setAddress(this.host);
+            packet.setPort(this.port);
+        }
         this.socket.setSoTimeout(500);
         this.socket.receive(packet);
         this.host=packet.getAddress();
         return new String(packet.getData());
     }
+
+    /**
+     * Schließt die verbindung
+     */
+    public void disconnect(){
+        this.socket.disconnect();
+        this.socket.close();
+    }
+
+    /**
+     * Stellt eine verbindung zu einem gewünschten host her und nur zu diesem
+     * @param address   Addresse des hosts
+     * @param port      Port des Hosts
+     */
+    public void connect(InetAddress address,int port){
+        this.socket.connect(address,port);
+        this.connection=true;
+    }
+
 }

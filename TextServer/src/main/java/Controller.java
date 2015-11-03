@@ -1,6 +1,8 @@
 import dialogs.Kick;
+import dialogs.Login;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -12,29 +14,42 @@ import java.util.ResourceBundle;
  * Created by sven on 02.11.15.
  */
 public class Controller implements Initializable{
-    public TextArea displayContent;
-    public ListView userList;
+    @FXML
+    private TextArea displayContent;
+    @FXML
+    private ListView userList;
 
-    public void saveFile(ActionEvent actionEvent) {
+    private Host host;
+
+    @FXML
+    private void saveFile(ActionEvent actionEvent) {
 
     }
 
-    public void openConnection(ActionEvent actionEvent) {
+    @FXML
+    private void openConnection(ActionEvent actionEvent) {
+        Login login = new Login();
+        login.launch();
+
+
     }
 
-    public void privateConnection(ActionEvent actionEvent) {
+    @FXML
+    private void privateConnection(ActionEvent actionEvent) {
     }
 
-    public void kickUser(ActionEvent actionEvent) {
+    @FXML
+    private void kickUser(ActionEvent actionEvent) {
         Kick kick = new Kick();
     }
 
-    public void sendText(Event event) {
+    @FXML
+    private void sendText(Event event) {
 
     }
 
-    @Override
+    @Override @FXML
     public void initialize(URL location, ResourceBundle resources) {
-
+        this.host = new Host();
     }
 }
