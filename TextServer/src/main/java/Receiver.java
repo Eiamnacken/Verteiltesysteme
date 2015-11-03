@@ -33,5 +33,14 @@ public class Receiver {
         return this.socket.receive(MAXBYTES);
     }
 
+    public String getAdress(){
+        String adress = this.socket.getHost().toString();
+        return adress;
+    }
+
+    public void disconnect(){
+        this.socket.disconnect();
+    }
+
 
 }

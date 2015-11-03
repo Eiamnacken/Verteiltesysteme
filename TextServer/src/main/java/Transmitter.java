@@ -29,4 +29,8 @@ public class Transmitter {
         if (s.equals("")) return;
         else this.socket.send(s);
     }
+
+    public void disconnect(){
+        this.socket.disconnect();
+    }
 }

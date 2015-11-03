@@ -71,13 +71,15 @@ public class UdpSocket {
      */
     public String receive(int maxBytes) throws IOException {
         DatagramPacket packet = new DatagramPacket(new byte[maxBytes],maxBytes);
-        if (!this.connection) {
-            packet.setAddress(this.host);
-            packet.setPort(this.port);
-        }
         this.socket.setSoTimeout(500);
         this.socket.receive(packet);
-        this.host=packet.getAddress();
+        //Wenn eine direkte Verbindung besteht nicht anpassen
+        if (!this.connection) {
+            this.host=packet.getAddress();
+        //Wenn direkte Verbindung besteht überprüfen auf gleiche Adresse.
+        }else if(!this.host.equals(packet.getAddress())){
+            return "";
+        }
         return new String(packet.getData());
     }
 
@@ -99,4 +101,11 @@ public class UdpSocket {
         this.connection=true;
     }
 
+    /**
+     * Gibt die Adresse des Sockets zurück
+     * @return  #host
+     */
+    public InetAddress getHost() {
+        return host;
+    }
 }
