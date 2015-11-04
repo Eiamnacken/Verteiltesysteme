@@ -37,6 +37,10 @@ public class Host  extends Thread{
         receiver = new Receiver(new UdpSocket(port));
     }
 
+    public Host() throws SocketException {
+        this.viewer = new LinkedList<>();
+        receiver = new Receiver(new UdpSocket());
+    }
     /**
      * Beendet die verbindung mit einem User und schmeißt diesen aus der Liste
      * @param address   Adresse oder namen des Users

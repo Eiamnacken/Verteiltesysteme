@@ -14,13 +14,14 @@
           <Menu mnemonicParsing="false" text="File">
             <items>
               <MenuItem fx:id="saveFileItem" mnemonicParsing="false" onAction="#saveFile" text="Save" />
-                  <MenuItem fx:id="openConnectionItem" mnemonicParsing="false" onAction="#openConnection" text="Open Connect" />
-                  <MenuItem fx:id="privateConnectionItem" mnemonicParsing="false" onAction="#privateConnection" text="Private Connect" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Server">
             <items>
+                  <MenuItem mnemonicParsing="false" onAction="#openConnection" text="Server eröffnen" />
               <MenuItem fx:id="kickUserItem" mnemonicParsing="false" onAction="#kickUser" text="Kick" />
+                  <MenuItem mnemonicParsing="false" onAction="#privateConnection" text="Privat Verbinden" />
+                  <MenuItem fx:id="openConnectionItem" mnemonicParsing="false" onAction="#openConenctionTo" text="Verbinden" />
             </items>
           </Menu>
         </menus>
