@@ -25,7 +25,6 @@ public class Controller implements Initializable {
 
     private Host host;
 
-    private Thread t;
     private void updateText(String s) {
         displayContent.setText(s);
     }
@@ -67,7 +66,6 @@ public class Controller implements Initializable {
 
     private void runLogic() {
         while (true) {
-            host.run();
             if (host.isReceived()) {
                 updateText(host.getBuffer());
             }
@@ -117,7 +115,8 @@ public class Controller implements Initializable {
             host = new Host(port);
             try {
                 host.addUser(new User("Hoster",port,login.getHost()));
-                t = new Thread(){
+                host.run();
+                Thread t = new Thread(){
                     public void run(){
                         runLogic();
                     }
