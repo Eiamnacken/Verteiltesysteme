@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by sven on 03.11.15.
  */
-public class Host  extends Thread{
+public class Host  {
 
     /**
      * Liste der Verbundenen User
@@ -35,11 +35,6 @@ public class Host  extends Thread{
     public Host(int port) throws SocketException {
         this.viewer = new LinkedList<>();
         receiver = new Receiver(new UdpSocket(port));
-    }
-
-    public Host() throws SocketException {
-        this.viewer = new LinkedList<>();
-        receiver = new Receiver(new UdpSocket());
     }
     /**
      * Beendet die verbindung mit einem User und schmeißt diesen aus der Liste
@@ -104,7 +99,7 @@ public class Host  extends Thread{
         viewer.add(u);
     }
 
-    @Override
+
     public void run() {
         receive();
         boolean newUser=true;

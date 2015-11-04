@@ -20,10 +20,9 @@ public class User {
 
     }
 
-    public User(String name, int port, String address) {
+    public User(String name, int port, String address) throws SocketException, UnknownHostException {
+        this(port,address);
         this.name = name;
-        this.port = port;
-        this.address = address;
     }
 
     public void disconnect(){

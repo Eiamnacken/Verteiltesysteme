@@ -11,6 +11,7 @@ import javafx.scene.control.TextArea;
 
 import java.net.SocketException;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ResourceBundle;
 
 /**
@@ -24,6 +25,7 @@ public class Controller implements Initializable {
 
     private Host host;
 
+    private Thread t;
     private void updateText(String s) {
         displayContent.setText(s);
     }
@@ -55,6 +57,7 @@ public class Controller implements Initializable {
                     runLogic();
                 }
             };
+            t.start();
         } catch (SocketException e) {
             e.printStackTrace();
         }
@@ -112,15 +115,21 @@ public class Controller implements Initializable {
         try {
             int port = Integer.parseInt(login.getPort());
             host = new Host(port);
-            host.addUser(new User("Hoster",port,login.getHost()));
-            Thread t = new Thread(){
-              public void run(){
-                  runLogic();
-              }
-            };
-        } catch (SocketException e) {
-            e.printStackTrace();
-        }
+            try {
+                host.addUser(new User("Hoster",port,login.getHost()));
+                t = new Thread(){
+                    public void run(){
+                        runLogic();
+                    }
+                };
+                t.start();
+            } catch (SocketException e) {
+                e.printStackTrace();
+            }
+            } catch (UnknownHostException | SocketException e) {
+                e.printStackTrace();
+            }
+
 
     }
 }

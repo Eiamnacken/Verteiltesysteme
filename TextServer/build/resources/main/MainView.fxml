@@ -6,7 +6,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <center>
-      <TextArea fx:id="displayContent" onInputMethodTextChanged="#sendText" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <TextArea fx:id="displayContent" onInputMethodTextChanged="#sendText" onKeyTyped="#sendText" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
    <top>
       <MenuBar BorderPane.alignment="CENTER">
@@ -14,13 +14,14 @@
           <Menu mnemonicParsing="false" text="File">
             <items>
               <MenuItem fx:id="saveFileItem" mnemonicParsing="false" onAction="#saveFile" text="Save" />
-                  <MenuItem fx:id="openConnectionItem" mnemonicParsing="false" onAction="#openConnection" text="Open Connect" />
-                  <MenuItem fx:id="privateConnectionItem" mnemonicParsing="false" onAction="#privateConnection" text="Private Connect" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Server">
             <items>
+                  <MenuItem mnemonicParsing="false" onAction="#openConnection" text="Server eröffnen" />
               <MenuItem fx:id="kickUserItem" mnemonicParsing="false" onAction="#kickUser" text="Kick" />
+                  <MenuItem mnemonicParsing="false" onAction="#privateConnection" text="Privat Verbinden" />
+                  <MenuItem fx:id="openConnectionItem" mnemonicParsing="false" onAction="#openConenctionTo" text="Verbinden" />
             </items>
           </Menu>
         </menus>
