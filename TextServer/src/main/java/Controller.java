@@ -25,27 +25,47 @@ public class Controller implements Initializable {
 
     private Host host;
 
+    /**
+     * Update der GUI um den Tex darzustellen
+     * @param s Text der dargestellt werden soll
+     */
     private void updateText(String s) {
         displayContent.setText(s);
     }
 
+    /**
+     * Update der GUI um alle verbundenen User anzuzeigen
+     */
     private void updateUserList() {
         ObservableList<String> list = FXCollections.observableArrayList();
         for (User u : host.getViewer()) {
             list.add(u.toString());
         }
+        userList = new ListView<>(list);
     }
 
+    /**
+     * Anzahl der User in der User liste
+     * @return  Größe der Liste
+     */
     private int getUserListSize() {
         return userList.getItems().size();
     }
 
 
+    /**
+     * Speicherst das gerade geschriebene
+     * @param actionEvent
+     */
     public void saveFile(ActionEvent actionEvent) {
         //TODO file speicher mit filechooser
     }
 
 
+    /**
+     * Öffnet einen TextServer auf diesem Rechner
+     * @param actionEvent
+     */
     public void openConnection(ActionEvent actionEvent) {
         LoginOpen loginOpen = new LoginOpen();
         loginOpen.launch();
@@ -77,11 +97,20 @@ public class Controller implements Initializable {
     }
 
 
+    /**
+     * öffnet eine private verbindung mit nur einem teilnehmer
+     * @param actionEvent
+     */
     public void privateConnection(ActionEvent actionEvent) {
+        //TODO für zusatzaufgabe
         //TODO Alle user rauschmeßen bis auf einen listView updaten
     }
 
 
+    /**
+     * Nimt einen User aus der Liste nimmt ihn ofline
+     * @param actionEvent
+     */
     public void kickUser(ActionEvent actionEvent) {
         Kick kick = new Kick();
         String user = kick.getUser();
@@ -94,7 +123,12 @@ public class Controller implements Initializable {
      * @param event
      */
     public void sendText(Event event) {
-        host.update(displayContent.getText());
+        Thread t = new Thread(){
+          public void run(){
+              host.update(displayContent.getText());
+          }
+        };
+        t.start();
 
     }
 
