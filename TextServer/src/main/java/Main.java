@@ -9,16 +9,24 @@ import javafx.stage.Stage;
  */
 public class Main extends Application{
 
+    Stage primary;
+    Parent root;
+
     public static void main(String args[]){
        launch(args);
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        Parent root;
+    public void start(Stage prim) throws Exception {
         root = FXMLLoader.load(getClass().getResource("/MainView.fxml"));
-        primaryStage.setTitle("TextServer");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+        prim.setTitle("TextServer");
+        prim.setScene(new Scene(root));
+        primary=prim;
+        primary.show();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        super.stop();
     }
 }

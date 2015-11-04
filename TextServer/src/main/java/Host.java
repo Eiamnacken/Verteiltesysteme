@@ -112,8 +112,9 @@ public class Host  {
             if (newUser){
                 try {
                     addUser(new User(receiver.getPort(),receiver.getAdress()));
-                } catch (SocketException | UnknownHostException e) {
-                    e.printStackTrace();
+                } catch (SocketException e) {
+                } catch (UnknownHostException e) {
+                    System.out.println("Konnte user nicht hinzufügen");
                 }
             }
         }

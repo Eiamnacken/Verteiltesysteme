@@ -25,6 +25,8 @@ public class Controller implements Initializable {
 
     private Host host;
 
+    private boolean threadsStop=false;
+
     /**
      * Update der GUI um den Tex darzustellen
      * @param s Text der dargestellt werden soll
@@ -84,8 +86,21 @@ public class Controller implements Initializable {
 
     }
 
+    /**
+     * Stop alle Threads
+     * @param threadsStop   True für stoppen
+     */
+    public void setThreadsStop(boolean threadsStop) {
+        this.threadsStop = threadsStop;
+    }
+
+    /**
+     * fragt die eingehenden Packete ab und updatet die GUI entsprechend
+     * Fügt neue User hinzu
+     */
     private void runLogic() {
-        while (true) {
+        while (!threadsStop) {
+            host.run();
             if (host.isReceived()) {
                 updateText(host.getBuffer());
             }
@@ -148,8 +163,7 @@ public class Controller implements Initializable {
             int port = Integer.parseInt(login.getPort());
             host = new Host(port);
             try {
-                host.addUser(new User("Hoster",port,login.getHost()));
-                host.run();
+                host.addUser(new User("Hoster", port, login.getHost()));
                 Thread t = new Thread(){
                     public void run(){
                         runLogic();
@@ -165,4 +179,5 @@ public class Controller implements Initializable {
 
 
     }
+
 }

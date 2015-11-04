@@ -34,7 +34,7 @@ public class UdpSocket {
     public UdpSocket(int port, String host) throws SocketException, UnknownHostException {
         this.port = port;
         this.host = InetAddress.getByName(host);
-        this.socket= new DatagramSocket(this.port);
+        this.socket= new DatagramSocket();
     }
 
     /**
@@ -44,7 +44,7 @@ public class UdpSocket {
      */
     public UdpSocket(int port) throws SocketException {
         this.port = port;
-        this.socket= new DatagramSocket();
+        this.socket= new DatagramSocket(port);
     }
 
     /**
@@ -75,7 +75,9 @@ public class UdpSocket {
         this.socket.receive(packet);
         //Wenn eine direkte Verbindung besteht nicht anpassen
         if (!this.connection) {
-            this.host=packet.getAddress();
+            if (packet.getAddress()!=null){
+                this.host=packet.getAddress();
+            }
             this.port=packet.getPort();
         //Wenn direkte Verbindung besteht überprüfen auf gleiche Adresse.
         }else if(!this.host.equals(packet.getAddress())){
