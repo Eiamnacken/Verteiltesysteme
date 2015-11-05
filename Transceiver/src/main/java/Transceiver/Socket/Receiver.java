@@ -56,12 +56,12 @@ public class Receiver implements Runnable{
 		System.out.println("ready to receive");
 
 		while(true){
-			rec = mySock.receive(maxBytes, timeOutInSec);
+			rec = socket.receive(maxBytes, timeOutInSec);
 
 			if(rec != null && rec.length() > 0)	{
 				if(rec.charAt(0) == (char) 4){
 					try{
-						mySock.close();
+						socket.close();
 						System.out.println("End of Transmission");
 						break;
 					}
