@@ -54,5 +54,34 @@ public class Receiver implements Runnable{
     @Override
     public void run() {
 
+      String rec = "";
+		System.out.println("ready to receive");
+
+		while(true){
+			rec = mySock.receive(maxBytes, timeOutInSec);
+
+			if(rec != null && rec.length() > 0)	{
+				if(rec.charAt(0) == (char) 4){
+					try{
+						mySock.close();
+						System.out.println("End of Transmission");
+						break;
+					}
+					catch (Exception e){
+						e.printStackTrace();
+					}
+				}
+				else{
+					System.out.println(rec);
+				}
+			}
+			else{
+				if(rec == null){ }
+				else{
+					System.out.println(rec);
+				}
+			}
+		}
+
     }
 }
