@@ -1,7 +1,5 @@
 package Transceiver.Socket;
 
-import Transceiver.Transceiver;
-
 import java.io.IOException;
 
 /**
@@ -12,14 +10,14 @@ public class Transmitter implements Runnable{
     /**
      * Socket mit dem Verbunden wird
      */
-    UdpSocket socket;
+    UDPSocket socket;
 
     /**
      * Erstellt einen Transmitter
      * @param socket
      * @see #socket
      */
-    public Transmitter(UdpSocket socket) {
+    public Transmitter(UDPSocket socket) {
         this.socket=socket;
     }
 

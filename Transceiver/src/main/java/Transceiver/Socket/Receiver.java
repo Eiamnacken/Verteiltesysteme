@@ -1,7 +1,5 @@
 package Transceiver.Socket;
 
-import Transceiver.Transceiver;
-
 import java.io.IOException;
 
 /**
@@ -12,7 +10,7 @@ public class Receiver implements Runnable{
     /**
      * Kümmert sich um die verbindung
      */
-    private UdpSocket socket;
+    private UDPSocket socket;
 
     /**
      * Größe des  packets das empfangen werden darf
@@ -23,7 +21,7 @@ public class Receiver implements Runnable{
      * Erstellt einen Receiver der empfangen kann
      * @param socket    Socket der verbinden soll
      */
-    public Receiver(UdpSocket socket) {
+    public Receiver(UDPSocket socket) {
         this.socket = socket;
     }
 
