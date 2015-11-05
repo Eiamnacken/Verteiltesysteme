@@ -9,7 +9,7 @@ import java.net.*;
  * Created by sven on 02.11.15.
  * Erstellt verbindungen mit dem UDP protokoll
  */
-public class UdpSocket {
+public class UDPSocket {
 
     /**
      * Port der freigegeben wird
@@ -35,7 +35,7 @@ public class UdpSocket {
      * @param host                  Adresse an die wir direkt senden wollen
      * @throws SocketException
      */
-    public UdpSocket(int port, String host) throws SocketException, UnknownHostException {
+    public UDPSocket(int port, String host) throws SocketException, UnknownHostException {
         this.port = port;
         this.host = InetAddress.getByName(host);
         this.socket= new DatagramSocket();
@@ -46,7 +46,7 @@ public class UdpSocket {
      * @param port              Port an dem wir lauschen wollen.
      * @throws SocketException
      */
-    public UdpSocket(int port) throws SocketException {
+    public UDPSocket(int port) throws SocketException {
         this.port = port;
         this.socket= new DatagramSocket(port);
     }
