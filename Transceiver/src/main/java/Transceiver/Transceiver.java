@@ -51,8 +51,8 @@ public class Transceiver implements Runnable{
     public Transceiver(int port, String host) throws SocketException, UnknownHostException {
         this.receiver= new Receiver(new UDPSocket(port));
         this.transmitter = new Transmitter(new UDPSocket(port,host));
-        this.read = new Thread(this.transmitter);
-        this.write = new Thread(this.receiver);
+        this.read = new Thread();
+        this.write = new Thread();
     }
 
     /**
@@ -61,11 +61,12 @@ public class Transceiver implements Runnable{
      */
     public Transceiver(int port) throws SocketException {
         this.receiver = new Receiver(new UDPSocket(port));
-        this.write = new Thread(this.receiver);
+        this.write = new Thread();
     }
 
     @Override
     public void run() {
+        //TODO Logik implementieren beide threads zum lesen um empfangen
 
     }
 }

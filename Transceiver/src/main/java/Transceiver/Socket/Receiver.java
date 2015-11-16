@@ -5,7 +5,7 @@ import java.io.IOException;
 /**
  * Created by sven on 02.11.15.
  */
-public class Receiver implements Runnable{
+public class Receiver {
 
     /**
      * Kümmert sich um die verbindung
@@ -45,13 +45,5 @@ public class Receiver implements Runnable{
 
     public void disconnect(){
         this.socket.disconnect();
-    }
-
-
-    @Override
-    public void run() {
-
-
-
     }
 }

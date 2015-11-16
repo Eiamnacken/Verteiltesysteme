@@ -5,7 +5,7 @@ import java.io.IOException;
 /**
  * Created by sven on 02.11.15.
  */
-public class Transmitter implements Runnable{
+public class Transmitter {
 
     /**
      * Socket mit dem Verbunden wird
@@ -35,11 +35,4 @@ public class Transmitter implements Runnable{
         this.socket.disconnect();
     }
 
-    @Override
-    public void run() {
-
-
-
-
-    }
 }
