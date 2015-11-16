@@ -36,8 +36,7 @@ public class Receiver implements Runnable{
     }
 
     public String getAdress(){
-        String adress = this.socket.getHost().toString();
-        return adress;
+        return this.socket.getHost().toString();
     }
 
     public int getPort(){
@@ -52,37 +51,7 @@ public class Receiver implements Runnable{
     @Override
     public void run() {
 
-      String rec = "";
-		System.out.println("ready to receive");
 
-		while(true){
-            try {
-                rec = socket.receive(MAXBYTES);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            if(rec != null && rec.length() > 0)	{
-				if(rec.charAt(0) == (char) 4){
-					try{
-						System.out.println("End of Transmission");
-						break;
-					}
-					catch (Exception e){
-						e.printStackTrace();
-					}
-				}
-				else{
-					System.out.println(rec);
-				}
-			}
-			else{
-				if(rec == null){ }
-				else{
-					System.out.println(rec);
-				}
-			}
-		}
 
     }
 }

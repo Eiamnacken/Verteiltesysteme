@@ -38,20 +38,7 @@ public class Transmitter implements Runnable{
     @Override
     public void run() {
 
-      System.out.println("ready to send");
 
-		while(input.hasNextLine()){
-			mySock.send(input.nextLine());
-		}
-		mySock.send(""+(char) 4);
-
-		try{
-			mySock.close();
-			System.out.println("End of Transmission");
-		}
-		catch (Exception e){
-			e.printStackTrace();
-		}
 
 
     }
