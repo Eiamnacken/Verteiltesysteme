@@ -2,6 +2,8 @@ group 'Transceiver'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'application'
+mainClassName='Transceiver/Main'
 
 sourceCompatibility = 1.8
 
