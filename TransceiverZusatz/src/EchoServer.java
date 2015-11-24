@@ -16,8 +16,10 @@ public class EchoServer {
             System.out.println("Verbindung hergestellt");
             String input;
             while ((input = in.readLine()) != null) {
+                out.println(input);
+                System.out.println(input);
+
             }
-            out.println(input);
             System.out.println("Verbindung beenden");
         }catch (IOException e) {System.err.println(e);}
     }

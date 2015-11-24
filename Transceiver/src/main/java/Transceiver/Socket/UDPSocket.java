@@ -42,6 +42,13 @@ public class UDPSocket {
     }
 
     /**
+     *
+     */
+    public UDPSocket() throws SocketException {
+        this.socket= new DatagramSocket();
+    }
+
+    /**
      * Erstellt einen UDPSocket für eine nicht direkte verbindung
      * @param port              Port an dem wir lauschen wollen.
      * @throws SocketException
@@ -84,7 +91,7 @@ public class UDPSocket {
             }
             this.port=packet.getPort();
         //Wenn direkte Verbindung besteht überprüfen auf gleiche Adresse.
-        }else if(!this.host.equals(packet.getAddress())){
+        }else if(this.host!=null&&!this.host.equals(packet.getAddress())){
             return "";
         }
         return new String(packet.getData());
@@ -123,5 +130,13 @@ public class UDPSocket {
      */
     public int getPort() {
         return this.port;
+    }
+
+    public void setHost(InetAddress host){
+        this.host=host;
+    }
+
+    public void setPort(int port){
+        this.port=port;
     }
 }

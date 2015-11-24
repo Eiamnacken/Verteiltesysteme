@@ -1,11 +1,9 @@
-group 'Transceiver'
+group 'TCP'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
-apply plugin: 'application'
-mainClassName='Transceiver/Main'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 1.5
 
 repositories {
     mavenCentral()
@@ -14,10 +12,3 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
-
-run{
-    args=[9898,"172.31.58.67"]
-}
-
-
-
