@@ -1,7 +1,5 @@
 package Socket;
 
-import jdk.nashorn.internal.ir.ReturnNode;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -33,7 +31,7 @@ public class Transmitter implements Runnable {
      * Sendet die eingabe der Kommandozeile an einen TCP socket bis <code>EOF</code>
      */
     public void send() {
-        try (PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
+        try (PrintWriter writer = new PrintWriter(socket.getOutputStream(),true);
              Scanner in = new Scanner(System.in)
         ) {
             while (!execute) {
