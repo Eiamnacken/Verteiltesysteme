@@ -16,7 +16,8 @@ class Main {
             System.exit(-1);
         }
         if (args[0].equals("-l")) {
-            try (ServerSocket serverSocket = new ServerSocket(Integer.valueOf(args[1]))
+            int port = Integer.parseInt(args[1]);
+            try (ServerSocket serverSocket = new ServerSocket(port)
             ) {
                 System.out.println("Server gestartet");
                 Receiver receiver = new Receiver(serverSocket);

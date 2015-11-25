@@ -29,6 +29,7 @@ public class Receiver implements Runnable {
     }
 
     public void receive() {
+        System.out.println(this.socket.getLocalPort());
         try (Socket socket1 = this.socket.accept();
              BufferedReader reader = new BufferedReader(
                      new InputStreamReader(socket1.getInputStream()))) {
@@ -37,7 +38,6 @@ public class Receiver implements Runnable {
             while ((buffer = reader.readLine()) != null) {
                 System.out.println(buffer);
             }
-
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -46,7 +46,6 @@ public class Receiver implements Runnable {
 
     @Override
     public void run() {
-
         receive();
     }
 }

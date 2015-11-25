@@ -34,15 +34,10 @@ public class Transmitter implements Runnable {
         try (PrintWriter writer = new PrintWriter(socket.getOutputStream(),true);
              Scanner in = new Scanner(System.in)
         ) {
-            while (!execute) {
-                String buffer;
-                buffer = in.nextLine();
-                writer.println(buffer);
-                if (buffer.contains("\u0004")){
-                    this.execute=true;
-                }
-                socket.close();
+            while (in.hasNextLine()) {
+                writer.println(in.nextLine());
             }
+            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
