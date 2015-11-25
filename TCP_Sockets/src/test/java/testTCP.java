@@ -15,16 +15,13 @@ public class testTCP {
     public void testConnection(){
         try (
              ServerSocket serverSocket = new ServerSocket(5000);
-             Socket socket = new Socket("localhost",5000);
-             Socket socket1  = serverSocket.accept()
+             Socket socket = new Socket("localhost",5000)
         ){
             Transmitter transmitter = new Transmitter(socket);
-            Receiver receiver = new Receiver(socket1);
+            Receiver receiver = new Receiver(serverSocket);
             new Thread(transmitter).start();
             new Thread(receiver).start();
 
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

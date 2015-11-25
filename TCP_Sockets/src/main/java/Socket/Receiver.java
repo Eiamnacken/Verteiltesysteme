@@ -4,45 +4,41 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
  * Created by sven on 18.11.15.
  * Ein Server der jede Verbindung akzeptiert
  */
-public class Receiver implements Runnable{
+public class Receiver implements Runnable {
     /**
      * Socket fü die übertragung
      */
-    private final Socket socket;
+    private ServerSocket socket;
 
-    private boolean execute=false;
+    private boolean execute = false;
 
     /**
      * Erstellt den Receiver als Server
      *
      * @param socket
      */
-    public Receiver(Socket socket) {
+    public Receiver(ServerSocket socket) throws IOException {
         this.socket = socket;
     }
 
     public void receive() {
-        try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(this.socket.getInputStream()))) {
-            //Starte thread
-            while (!this.execute) {
-                String buffer;
-                //Lesen der eingegangenen daten
-                while ((buffer = reader.readLine())!=null) {
-                    System.out.println(buffer);
-                    //Bei EOF ende thread
-                    if (buffer.contains("\u0004")){
-                        this.execute=true;
-                        break;
-                    }
-                }
+        try (Socket socket1 = this.socket.accept();
+             BufferedReader reader = new BufferedReader(
+                     new InputStreamReader(socket1.getInputStream()))) {
+            String buffer;
+            //Lesen der eingegangenen daten
+            while ((buffer = reader.readLine()) != null) {
+                System.out.println(buffer);
             }
+
+            reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -50,6 +46,7 @@ public class Receiver implements Runnable{
 
     @Override
     public void run() {
+
         receive();
     }
 }

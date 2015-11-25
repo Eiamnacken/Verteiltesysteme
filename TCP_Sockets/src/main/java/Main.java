@@ -16,14 +16,14 @@ class Main {
             System.exit(-1);
         }
         if (args[0].equals("-l")) {
-            try (ServerSocket serverSocket = new ServerSocket(Integer.valueOf(args[1]));
-                 Socket socket = serverSocket.accept()
+            try (ServerSocket serverSocket = new ServerSocket(Integer.valueOf(args[1]))
             ) {
                 System.out.println("Server gestartet");
-                Receiver receiver = new Receiver(socket);
+                Receiver receiver = new Receiver(serverSocket);
                 Thread write = new Thread(receiver);
                 write.start();
-            } catch (IOException e) {
+                write.join();
+            } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
         } else {
@@ -33,7 +33,8 @@ class Main {
                 Transmitter transmitter = new Transmitter(socket);
                 Thread send = new Thread(transmitter);
                 send.start();
-            } catch (IOException e) {
+                send.join();
+            } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
         }
