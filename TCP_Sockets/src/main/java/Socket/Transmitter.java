@@ -37,7 +37,7 @@ public class Transmitter implements Runnable {
             String buffer;
             while (in.hasNextLine()) {
                 buffer=in.nextLine();
-                writer.write(buffer);
+                writer.println(buffer);
                 if (buffer.contains("\u0004")){
                     break;
                 }
