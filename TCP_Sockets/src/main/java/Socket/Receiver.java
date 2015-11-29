@@ -15,7 +15,7 @@ public class Receiver implements Runnable {
     /**
      * Socket fü die übertragung
      */
-    private ServerSocket socket;
+    private Socket socket;
 
     private boolean execute = false;
 
@@ -24,19 +24,21 @@ public class Receiver implements Runnable {
      *
      * @param socket
      */
-    public Receiver(ServerSocket socket) throws IOException {
+    public Receiver(Socket socket) throws IOException {
         this.socket = socket;
     }
 
     public void receive() {
         System.out.println(this.socket.getLocalPort());
-        try (Socket socket1 = this.socket.accept();
-             BufferedReader reader = new BufferedReader(
-                     new InputStreamReader(socket1.getInputStream()))) {
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(this.socket.getInputStream()))) {
             String buffer;
             //Lesen der eingegangenen daten
             while ((buffer = reader.readLine()) != null) {
                 System.out.println(buffer);
+                if (buffer.contains("\u0004")){
+                    break;
+                }
             }
             reader.close();
         } catch (IOException e) {

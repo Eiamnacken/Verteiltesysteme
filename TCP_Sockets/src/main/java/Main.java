@@ -17,22 +17,21 @@ class Main {
         }
         if (args[0].equals("-l")) {
             int port = Integer.parseInt(args[1]);
-            try (ServerSocket serverSocket = new ServerSocket(port)
+            try (Transceiver transceiver = new Transceiver(port)
             ) {
                 System.out.println("Server gestartet");
-                Receiver receiver = new Receiver(serverSocket);
-                Thread write = new Thread(receiver);
+
+                Thread write = new Thread(transceiver);
                 write.start();
                 write.join();
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
         } else {
-            try (Socket socket = new Socket(args[0], Integer.valueOf(args[1]))
+            try (Transceiver transceiver = new Transceiver(Integer.parseInt(args[1]),args[0])
             ) {
                 System.out.println("Client gestartet");
-                Transmitter transmitter = new Transmitter(socket);
-                Thread send = new Thread(transmitter);
+                Thread send = new Thread(transceiver);
                 send.start();
                 send.join();
             } catch (IOException | InterruptedException e) {

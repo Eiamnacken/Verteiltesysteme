@@ -18,7 +18,7 @@ public class testTCP {
              Socket socket = new Socket("localhost",5000)
         ){
             Transmitter transmitter = new Transmitter(socket);
-            Receiver receiver = new Receiver(serverSocket);
+            Receiver receiver = new Receiver(socket);
             new Thread(transmitter).start();
             new Thread(receiver).start();
 
