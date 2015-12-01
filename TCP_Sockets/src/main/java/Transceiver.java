@@ -1,7 +1,9 @@
+import Socket.Receiver;
+import Socket.Transmitter;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import Socket.*;
 
 /**
  * Created by sven on 27.11.15.
@@ -55,6 +57,6 @@ public class Transceiver implements Runnable,AutoCloseable{
 
     @Override
     public void close() throws IOException {
-        this.socket.close();
+
     }
 }

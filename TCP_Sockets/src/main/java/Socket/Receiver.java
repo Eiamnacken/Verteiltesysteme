@@ -27,20 +27,20 @@ public class Receiver implements Runnable {
     }
 
     public void receive() {
-        try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(this.socket.getInputStream()))) {
+        try  {
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(this.socket.getInputStream()));
             String buffer;
             //Lesen der eingegangenen daten
-            while ((buffer = reader.readLine()) != null) {
+            while (!this.socket.isInputShutdown()&&(buffer = reader.readLine()) != null) {
                 System.out.println(buffer);
-                if (buffer.contains("\u0004")){
-                    break;
-                }
+
             }
-            reader.close();
+            this.socket.shutdownInput();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
+
     }
 
     @Override

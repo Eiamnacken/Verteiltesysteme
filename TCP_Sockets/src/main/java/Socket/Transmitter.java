@@ -31,18 +31,15 @@ public class Transmitter implements Runnable {
      * Sendet die eingabe der Kommandozeile an einen TCP socket bis <code>EOF</code>
      */
     public void send() {
-        try (PrintWriter writer = new PrintWriter(socket.getOutputStream(),true);
-             Scanner in = new Scanner(System.in)
+        try (Scanner in = new Scanner(System.in)
         ) {
+            PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
             String buffer;
             while (in.hasNextLine()) {
-                buffer=in.nextLine();
+                buffer = in.nextLine();
                 writer.println(buffer);
-                if (buffer.contains("\u0004")){
-                    break;
-                }
             }
-            writer.close();
+            this.socket.shutdownOutput();
         } catch (IOException e) {
             e.printStackTrace();
         }

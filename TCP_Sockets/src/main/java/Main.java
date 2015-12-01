@@ -1,9 +1,4 @@
-import Socket.Receiver;
-import Socket.Transmitter;
-
 import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
 
 /**
  * Created by sven on 18.11.15.
@@ -17,8 +12,9 @@ class Main {
         }
         if (args[0].equals("-l")) {
             int port = Integer.parseInt(args[1]);
-            try (Transceiver transceiver = new Transceiver(port)
-            ) {
+            try
+            {
+                Transceiver transceiver = new Transceiver(port);
                 System.out.println("Server gestartet");
 
                 Thread write = new Thread(transceiver);
@@ -28,8 +24,8 @@ class Main {
                 e.printStackTrace();
             }
         } else {
-            try (Transceiver transceiver = new Transceiver(Integer.parseInt(args[1]),args[0])
-            ) {
+            try {
+                Transceiver transceiver = new Transceiver(Integer.parseInt(args[1]),args[0]);
                 System.out.println("Client gestartet");
                 Thread send = new Thread(transceiver);
                 send.start();
