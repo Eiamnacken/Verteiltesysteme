@@ -1,25 +1,25 @@
 package com.TCPChat;
 
 import javafx.application.Application;
-import javafx.geometry.Rectangle2D;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Screen;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class Main extends Application {
 
     @Override
-    public void start(Stage stage) {
-        StackPane root = new StackPane(new Label("Hello JavaFX World!"));
-
-        Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
-        Scene scene = new Scene(root, visualBounds.getWidth(), visualBounds.getHeight());
-
-        stage.getIcons().add(new Image(Main.class.getResourceAsStream("/icon.png")));
-        stage.setScene(scene);
+    public void start(Stage stage)  {
+        Pane root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/Chat.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.setTitle("Chat");
+        stage.setScene(new Scene(root,600 ,400));
         stage.show();
     }
 }
