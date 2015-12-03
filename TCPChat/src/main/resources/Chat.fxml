@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="0.0" />
+      <HBox prefHeight="401.0" prefWidth="489.0">
+         <children>
+            <VBox prefHeight="362.0" prefWidth="504.0">
+               <children>
+                  <HBox prefHeight="30.0" prefWidth="200.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="20.0" prefWidth="38.0" text="Button" />
+                     </children>
+                  </HBox>
+                  <TabPane prefHeight="330.0" prefWidth="504.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="Untitled Tab 1">
+                           <content>
+                              <TextArea prefHeight="200.0" prefWidth="200.0" />
+                           </content>
+                        </Tab>
+                      <Tab text="Untitled Tab 2" />
+                    </tabs>
+                  </TabPane>
+                  <HBox prefHeight="48.0" prefWidth="504.0">
+                     <children>
+                        <Label prefHeight="34.0" prefWidth="36.0" text="Label" />
+                        <TextField />
+                        <Button mnemonicParsing="false" text="Button" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <VBox prefHeight="353.0" prefWidth="90.0">
+         <children>
+            <Label text="Label" />
+            <Accordion />
+         </children>
+      </VBox>
+   </children>
+</FlowPane>
