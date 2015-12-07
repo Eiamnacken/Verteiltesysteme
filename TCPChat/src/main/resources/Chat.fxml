@@ -12,7 +12,7 @@
     <children>
         <HBox prefHeight="401.0" prefWidth="604.0">
             <children>
-                <HiddenSidesPane fx:id="hiddenPane" prefHeight="365.0" prefWidth="489.0" triggerDistance="30">
+                <HiddenSidesPane fx:id="hiddenPane" prefHeight="365.0" prefWidth="489.0" triggerDistance="50.0">
                     <content>
                         <VBox>
                             <children>
@@ -38,7 +38,7 @@
                         </VBox>
                     </content>
                     <left>
-                        <AnchorPane>
+                        <AnchorPane prefWidth="200" prefHeight="400" minHeight="400" minWidth="200">
                             <children>
                                 <VBox layoutY="-4.0" prefHeight="400.0" prefWidth="200.0">
                                     <children>
