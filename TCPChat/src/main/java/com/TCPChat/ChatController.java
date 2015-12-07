@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -24,7 +23,6 @@ public class ChatController implements Initializable{
     public Button send;
     public ListView<Label> userList;
     private PopOver popOver = new PopOver();
-    private Button setPrivate;
     private AnchorPane anchorPane;
 
     @Override
@@ -37,19 +35,14 @@ public class ChatController implements Initializable{
         userList.setItems(items);
         anchorPane = new AnchorPane();
         anchorPane.setPrefSize(40,50);
-        setPrivate = new Button("Privates Gespräch");
+        final Button setPrivate = new Button("Privates Gespräch");
         anchorPane.getChildren().addAll(setPrivate);
-        setPrivate.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                setPrivateConnection(userList.getSelectionModel().getSelectedItem().getText());
-            }
-        });
+        setPrivate.setOnAction(this::setPrivateConnection);
 
     }
 
-    private void setPrivateConnection(String user){
-        System.out.println(user);
+    private void setPrivateConnection(ActionEvent event){
+
     }
 
 
