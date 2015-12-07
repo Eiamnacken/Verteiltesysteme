@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="365.0" prefWidth="489.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TabPane prefHeight="341.0" prefWidth="489.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Untitled Tab 1">
+               <content>
+                  <TextArea prefHeight="200.0" prefWidth="200.0" />
+               </content>
+            </Tab>
+          <Tab text="Untitled Tab 2">
+               <content>
+                  <TextArea prefHeight="200.0" prefWidth="200.0" />
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <HBox prefHeight="43.0" prefWidth="489.0">
+         <children>
+            <Label prefHeight="35.0" prefWidth="36.0" text="Label" />
+            <TextField prefHeight="34.0" prefWidth="363.0" />
+            <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="99.0" text="Button" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

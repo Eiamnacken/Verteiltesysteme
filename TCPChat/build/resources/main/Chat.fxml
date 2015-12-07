@@ -6,23 +6,13 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TCPChat.Controller">
    <children>
-      <HiddenSidesPane />
       <HBox prefHeight="401.0" prefWidth="489.0">
          <children>
             <VBox prefHeight="362.0" prefWidth="504.0">
                <children>
-                  <TabPane prefHeight="356.0" prefWidth="489.0" tabClosingPolicy="UNAVAILABLE">
-                    <tabs>
-                      <Tab text="Untitled Tab 1">
-                           <content>
-                              <TextArea prefHeight="200.0" prefWidth="200.0" />
-                           </content>
-                        </Tab>
-                      <Tab text="Untitled Tab 2" />
-                    </tabs>
-                  </TabPane>
+                  <HiddenSidesPane fx:id="hiddenPane" pinnedSide="LEFT" prefHeight="365.0" prefWidth="489.0" />
                   <HBox prefHeight="35.0" prefWidth="489.0">
                      <children>
                         <Label prefHeight="34.0" prefWidth="36.0" text="Label" />
