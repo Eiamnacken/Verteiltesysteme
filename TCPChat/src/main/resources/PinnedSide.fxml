@@ -5,15 +5,20 @@
 <?import javafx.scene.layout.*?>
 
 
-<fx:root type="javafx.scene.layout.AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <VBox layoutY="-4.0" prefHeight="400.0" prefWidth="200.0">
-         <children>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Button" />
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Button" />
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Button" />
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Button" />
-         </children>
-      </VBox>
-   </children>
+<fx:root type="javafx.scene.layout.AnchorPane" fx:controller="com.TCPChat.PinnedSideController" maxHeight="-Infinity"
+         maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+        <children>
+            <VBox layoutY="-4.0" prefHeight="400.0" prefWidth="200.0">
+                <children>
+                    <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Neuer Raum"
+                            onAction="#neuerRaum"/>
+                    <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="About"/>
+                    <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Hilfe"/>
+                    <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Einstellungen"
+                            onAction="#settings"/>
+                    <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Raum"
+                            onAction="#settingsRoom"/>
+                </children>
+            </VBox>
+        </children>
 </fx:root>

@@ -15,6 +15,7 @@ public class Main extends Application {
         Pane root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/Chat.fxml"));
+
         } catch (IOException e) {
             e.printStackTrace();
         }

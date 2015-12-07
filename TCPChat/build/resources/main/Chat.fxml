@@ -6,29 +6,67 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TCPChat.Controller">
-   <children>
-      <HBox prefHeight="401.0" prefWidth="489.0">
-         <children>
-            <VBox prefHeight="362.0" prefWidth="504.0">
-               <children>
-                  <HiddenSidesPane fx:id="hiddenPane" pinnedSide="LEFT" prefHeight="365.0" prefWidth="489.0" />
-                  <HBox prefHeight="35.0" prefWidth="489.0">
-                     <children>
-                        <Label prefHeight="34.0" prefWidth="36.0" text="Label" />
-                        <TextField prefHeight="37.0" prefWidth="394.0" />
-                        <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="60.0" text="Button" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-      <VBox prefHeight="353.0" prefWidth="90.0">
-         <children>
-            <Label text="Label" />
-            <Accordion />
-         </children>
-      </VBox>
-   </children>
-</FlowPane>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+         minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40"
+         xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TCPChat.ChatController">
+    <children>
+        <HBox prefHeight="401.0" prefWidth="604.0">
+            <children>
+                <HiddenSidesPane fx:id="hiddenPane" prefHeight="365.0" prefWidth="489.0" triggerDistance="30">
+                    <content>
+                        <VBox>
+                            <children>
+                                <TabPane prefHeight="341.0" prefWidth="489.0" tabClosingPolicy="UNAVAILABLE">
+                                    <tabs>
+                                        <Tab fx:id="mainTab" text="Hauptraum">
+                                            <content>
+                                                <TextArea prefHeight="200.0" prefWidth="200.0"/>
+                                            </content>
+                                        </Tab>
+                                    </tabs>
+                                </TabPane>
+                                <HBox prefHeight="43.0" prefWidth="489.0">
+                                    <children>
+                                        <Label prefHeight="35.0" prefWidth="36.0" text="Schreiben"/>
+                                        <TextField fx:id="hauptChat" prefHeight="34.0" prefWidth="363.0"/>
+                                        <Button fx:id="send" onAction="#sendComment" mnemonicParsing="false"
+                                                prefHeight="34.0"
+                                                prefWidth="99.0" text="Send"/>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </content>
+                    <left>
+                        <AnchorPane>
+                            <children>
+                                <VBox layoutY="-4.0" prefHeight="400.0" prefWidth="200.0">
+                                    <children>
+                                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0"
+                                                text="Neuer Raum"
+                                                onAction="#neuerRaum"/>
+                                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0"
+                                                text="About"/>
+                                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0"
+                                                text="Hilfe"/>
+                                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0"
+                                                text="Einstellungen"
+                                                onAction="#settings"/>
+                                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Raum"
+                                                onAction="#settingsRoom"/>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </AnchorPane>
+                    </left>
+                </HiddenSidesPane>
+                <VBox prefHeight="353.0" prefWidth="90.0">
+                    <children>
+                        <Label text="User"/>
+                        <Accordion fx:id="userList"/>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
+</VBox>
