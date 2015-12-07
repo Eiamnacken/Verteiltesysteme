@@ -18,7 +18,7 @@
                                     <tabs>
                                         <Tab fx:id="mainTab" text="Hauptraum">
                                             <content>
-                                                <TextArea prefHeight="200.0" prefWidth="200.0" />
+                                                <TextArea prefHeight="200.0" prefWidth="200.0"  editable="false" fx:id="mainRoomText"/>
                                             </content>
                                         </Tab>
                                     </tabs>
@@ -26,7 +26,7 @@
                                 <HBox prefHeight="43.0" prefWidth="489.0">
                                     <children>
                                         <Label prefHeight="35.0" prefWidth="36.0" text="Schreiben" />
-                                        <TextField fx:id="hauptChat" prefHeight="34.0" prefWidth="363.0" editable="false" />
+                                        <TextField fx:id="commentField" prefHeight="34.0" prefWidth="363.0"  />
                                         <Button fx:id="send" mnemonicParsing="false" onAction="#sendComment" prefHeight="34.0" prefWidth="99.0" text="Send" />
                                     </children>
                                 </HBox>

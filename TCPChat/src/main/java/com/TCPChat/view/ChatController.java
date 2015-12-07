@@ -1,4 +1,4 @@
-package com.TCPChat;
+package com.TCPChat.view;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,9 +19,10 @@ import java.util.ResourceBundle;
 public class ChatController implements Initializable{
     public HiddenSidesPane hiddenPane;
     public Tab mainTab;
-    public TextField hauptChat;
+    public TextField commentField;
     public Button send;
     public ListView<Label> userList;
+    public TextArea mainRoomText;
     private PopOver popOver = new PopOver();
     private AnchorPane anchorPane;
 
@@ -42,7 +43,7 @@ public class ChatController implements Initializable{
     }
 
     private void setPrivateConnection(ActionEvent event){
-
+        popOver.hide();
     }
 
 
@@ -61,6 +62,7 @@ public class ChatController implements Initializable{
     public void selectedUser(Event event) {
         popOver.hide();
         popOver.setContentNode(anchorPane);
+        popOver.setAutoFix(false);
         popOver.show(userList.getSelectionModel().getSelectedItem());
     }
 }
