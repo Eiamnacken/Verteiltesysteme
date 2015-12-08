@@ -1,6 +1,6 @@
 package com.TCPChat.chat.cs;
 
-import chat.ChatEvent;
+
 import com.TCPChat.chat.ChatEvent;
 
 import java.util.*;

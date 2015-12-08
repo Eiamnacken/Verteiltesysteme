@@ -1,5 +1,7 @@
 package com.TCPChat.view;
 
+import com.TCPChat.chat.ChatEvent;
+import com.TCPChat.chat.IView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,6 +17,7 @@ import org.controlsfx.control.HiddenSidesPane;
 import org.controlsfx.control.PopOver;
 
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -22,7 +25,7 @@ import java.util.ResourceBundle;
 /**
  * Created by sven on 07.12.15.
  */
-public class ChatController implements Initializable{
+public class ChatController implements Initializable, IView{
     @FXML
     private HiddenSidesPane hiddenPane;
     @FXML
@@ -41,6 +44,7 @@ public class ChatController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //TODO entferne standard user einträge
         Label [] names = new Label[3];
         names[1]=new Label("Hanna");
         names[2]=new Label("Stefan");
@@ -56,20 +60,25 @@ public class ChatController implements Initializable{
     }
 
     private void setPrivateConnection(ActionEvent event){
+        //TODO Neuen Raum mit einem Chat partner öffnen
         popOver.hide();
     }
 
 
     public void sendComment(ActionEvent actionEvent) {
+        //TODO Senden des textes
     }
 
     public void neuerRaum(ActionEvent actionEvent) {
+        //TODO neuen raum anlegen
     }
 
     public void settings(ActionEvent actionEvent) {
+        //TODO eintellungen erlauben
     }
 
     public void settingsRoom(ActionEvent actionEvent) {
+        //TODO passwort festlegen oder blacklist
     }
 
     public void selectedUser(Event event) {
@@ -117,9 +126,24 @@ public class ChatController implements Initializable{
         });
 
         Optional<String> result = dialog.showAndWait();
+        //TODO User anlegen als Host name in der Liste eintragen
     }
 
     private void updateUserlist(List users){
+        //TODO die liste an usern updaten
+    }
 
+    @Override
+    public void update(ChatEvent evt) throws Exception {
+        switch (evt.getEventType()) {
+            case ChatEvent.LIST_UPDATE:
+                //TODO Userlist updaten
+                updateUserlist(new LinkedList<>());
+                break;
+            case ChatEvent.COMMENT:
+                //TODO abhängig vom raum machen
+                mainRoomText.setText(evt.getComment()+"\n");
+                break;
+        }
     }
 }

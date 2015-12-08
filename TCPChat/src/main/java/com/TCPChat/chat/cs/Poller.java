@@ -1,7 +1,8 @@
 package com.TCPChat.chat.cs;
 
-import chat.ChatEvent;
-import chat.IView;
+
+import com.TCPChat.chat.ChatEvent;
+import com.TCPChat.chat.IView;
 
 public class Poller extends Thread {
   private String ownName; 

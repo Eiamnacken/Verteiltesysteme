@@ -1,10 +1,12 @@
 package com.TCPChat.chat.cs;
 
-import chat.ChatEvent;
-import chat.IView;
+
+import com.TCPChat.chat.ChatEvent;
+import com.TCPChat.chat.IView;
+
 import javax.swing.*;
-import java.awt.BorderLayout;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GUI implements IView {
   private IChat serverProxy;
@@ -19,62 +21,7 @@ public class GUI implements IView {
     this.serverProxy = proxy;
   }
 
-  public String showLoginFrame() {    
-    ownName = JOptionPane.showInputDialog(null, "Name", "Login", JOptionPane.PLAIN_MESSAGE);
-    if (ownName == null) {
-      JOptionPane.showMessageDialog(null, "Client needs a name, bye.");
-      System.exit(0);
-    }
-    return ownName;
-  } 
 
-  public void showChatFrame() {
-    JPanel usersPanel = new JPanel();
-    usersPanel.setLayout(new BorderLayout());
-    usersPanel.add(new JLabel("Current users:"), BorderLayout.NORTH);
-    userList = new JTextArea(10, 20);
-    userList.setEditable(false);
-    usersPanel.add(userList, BorderLayout.SOUTH);
-
-    JPanel chatPanel = new JPanel();
-    chatPanel.setLayout(new BorderLayout());
-    chatPanel.add(new JLabel("Chat:"), BorderLayout.NORTH);
-    chatArea = new JTextArea(10, 20);
-    chatPanel.add(chatArea, BorderLayout.SOUTH);
-
-    JPanel ownPanel = new JPanel();
-    ownPanel.setLayout(new BorderLayout());
-    ownPanel.add(new JLabel("Your comment:"), BorderLayout.NORTH);
-    chatField = new JTextField(20);
-    ownPanel.add(chatField, BorderLayout.CENTER);
-    
-    JPanel buttonsPanel = new JPanel();
-    submitButton = new JButton("submit");
-    submitButton.addActionListener(new ChatListener());
-    buttonsPanel.add(submitButton);
-    logoutButton = new JButton("logout");
-    logoutButton.addActionListener(new ChatListener());
-    buttonsPanel.add(logoutButton);
-    ownPanel.add(buttonsPanel, BorderLayout.SOUTH);
-
-    chatFrame = new JFrame(); 
-    chatFrame.setLayout(new BorderLayout());
-    chatFrame.add(usersPanel, BorderLayout.NORTH);
-    chatFrame.add(chatPanel, BorderLayout.CENTER);
-    chatFrame.add(ownPanel, BorderLayout.SOUTH);
-    chatFrame.pack();
-    chatFrame.getRootPane().setDefaultButton(submitButton);
-    chatFrame.setVisible(true);
-  } 
-  
-  private void fillUserList(String[] names) {
-    userList.setText("");
-    for ( String name: names ) 
-      if (name.equals(ownName) )
-        userList.append("<" + name + ">\n");
-      else
-        userList.append(name + "\n");
-  } 
 
   class ChatListener implements ActionListener {
     public void actionPerformed(ActionEvent evt) {
@@ -94,7 +41,7 @@ public class GUI implements IView {
     }
   }
  
-  public void update(ChatEvent evt) { 
+  public void update(ChatEvent evt) {
     switch (evt.getEventType()) {
       case ChatEvent.LIST_UPDATE:
         fillUserList(evt.getList());          

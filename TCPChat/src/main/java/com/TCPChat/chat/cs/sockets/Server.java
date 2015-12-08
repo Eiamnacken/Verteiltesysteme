@@ -1,7 +1,10 @@
 package com.TCPChat.chat.cs.sockets;
 
-import chat.cs.ChatEventManager;
-import java.net.*;
+
+import com.TCPChat.chat.cs.ChatEventManager;
+
+import java.net.ServerSocket;
+import java.net.Socket;
 
 public class Server  {
 
