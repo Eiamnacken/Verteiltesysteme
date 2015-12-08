@@ -1,10 +1,12 @@
 package com.TCPChat.chat.cs.sockets;
 
+import com.TCPChat.chat.cs.GUI;
+import com.TCPChat.chat.cs.IChat;
+import com.TCPChat.chat.cs.Poller;
+
 import java.net.Socket;
 
-import chat.cs.Poller;
-import chat.cs.GUI;
-import chat.cs.IChat;
+
 
 public class Client {
 	private IChat proxy;

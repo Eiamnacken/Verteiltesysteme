@@ -1,9 +1,12 @@
 package com.TCPChat.chat.cs.sockets;
 
-import java.net.*;
-import java.io.*;
-import chat.ChatEvent;
-import chat.cs.IChat;
+import com.TCPChat.chat.ChatEvent;
+import com.TCPChat.chat.cs.IChat;
+
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+
 
 public class ServerProxy implements IChat {
 	private Socket socket;

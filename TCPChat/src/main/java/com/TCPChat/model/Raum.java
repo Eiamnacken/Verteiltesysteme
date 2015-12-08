@@ -12,4 +12,14 @@ public class Raum {
     public Raum() {
         this.users = new LinkedList<>();
     }
+
+    public void send(){
+        for(User u : users){
+
+        }
+    }
+
+    public void addUser(User user){
+        users.add(user);
+    }
 }
