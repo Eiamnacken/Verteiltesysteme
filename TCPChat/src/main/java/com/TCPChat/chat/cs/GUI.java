@@ -40,17 +40,6 @@ public class GUI implements IView {
       }
     }
   }
- 
-  public void update(ChatEvent evt) {
-    switch (evt.getEventType()) {
-      case ChatEvent.LIST_UPDATE:
-        fillUserList(evt.getList());          
-        break;
-      case ChatEvent.COMMENT:
-        chatArea.append(evt.getComment() + "\n");
-        break;
-    }  
-  }
   
   public void run() {
     

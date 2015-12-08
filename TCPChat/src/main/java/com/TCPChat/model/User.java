@@ -38,4 +38,6 @@ public class User {
     public boolean isAdmin() {
         return admin;
     }
+
+
 }

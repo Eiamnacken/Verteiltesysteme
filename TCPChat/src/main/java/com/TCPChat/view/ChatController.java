@@ -2,6 +2,8 @@ package com.TCPChat.view;
 
 import com.TCPChat.chat.ChatEvent;
 import com.TCPChat.chat.IView;
+import com.TCPChat.model.Raum;
+import com.TCPChat.model.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,15 +19,16 @@ import org.controlsfx.control.HiddenSidesPane;
 import org.controlsfx.control.PopOver;
 
 import java.net.URL;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by sven on 07.12.15.
  */
 public class ChatController implements Initializable, IView{
+    @FXML
+    private TabPane roomGUI;
     @FXML
     private HiddenSidesPane hiddenPane;
     @FXML
@@ -36,21 +39,17 @@ public class ChatController implements Initializable, IView{
     private Button send;
     @FXML
     private ListView<Label> userList;
-    @FXML
-    private TextArea mainRoomText;
 
+    private Map<String,Raum> rooms;
     private PopOver popOver = new PopOver();
     private AnchorPane anchorPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //TODO entferne standard user einträge
-        Label [] names = new Label[3];
-        names[1]=new Label("Hanna");
-        names[2]=new Label("Stefan");
-        names[0]=new Label("Markus");
-        ObservableList<Label> items = FXCollections.observableArrayList(names);
-        userList.setItems(items);
+        rooms = new HashMap<>();
+        rooms.put("Hauptraum",new Raum("Hauptraum"));
+        mainTab.setText(rooms.get("Hauptraum").toString());
         anchorPane = new AnchorPane();
         anchorPane.setPrefSize(40,50);
         final Button setPrivate = new Button("Privates Gespräch");
@@ -127,10 +126,23 @@ public class ChatController implements Initializable, IView{
 
         Optional<String> result = dialog.showAndWait();
         //TODO User anlegen als Host name in der Liste eintragen
+        if (result.isPresent()){
+            User host = new User(result.get());
+            rooms.get("Hauptraum").addUser(host);
+        }
     }
 
-    private void updateUserlist(List users){
-        //TODO die liste an usern updaten
+    /**
+     * Update die Liste der user
+     */
+    private void updateUserlist(){
+        List<User> list= rooms.get(roomGUI.getSelectionModel().getSelectedItem().getText()).getUser();
+        ObservableList<Label> listUpdate = FXCollections.observableList(list.
+                stream().
+                map(u-> new Label(u.getUserName())).
+                collect(Collectors.toList()));
+        userList.setItems(listUpdate);
+
     }
 
     @Override
@@ -138,12 +150,19 @@ public class ChatController implements Initializable, IView{
         switch (evt.getEventType()) {
             case ChatEvent.LIST_UPDATE:
                 //TODO Userlist updaten
-                updateUserlist(new LinkedList<>());
+                updateUserlist();
                 break;
             case ChatEvent.COMMENT:
                 //TODO abhängig vom raum machen
                 mainRoomText.setText(evt.getComment()+"\n");
                 break;
         }
+    }
+
+    public void connect(ActionEvent actionEvent) {
+
+    }
+
+    public void changeRoom(Event event) {
     }
 }

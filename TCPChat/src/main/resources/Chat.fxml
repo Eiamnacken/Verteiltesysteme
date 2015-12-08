@@ -14,9 +14,9 @@
                     <content>
                         <VBox>
                             <children>
-                                <TabPane prefHeight="341.0" prefWidth="489.0" tabClosingPolicy="UNAVAILABLE">
+                                <TabPane prefHeight="341.0" prefWidth="489.0" tabClosingPolicy="UNAVAILABLE" fx:id="roomGUI">
                                     <tabs>
-                                        <Tab fx:id="mainTab" text="Hauptraum">
+                                        <Tab fx:id="mainTab" text="Hauptraum" onSelectionChanged="#changeRoom">
                                             <content>
                                                 <TextArea prefHeight="200.0" prefWidth="200.0"  editable="false" fx:id="mainRoomText"/>
                                             </content>
@@ -38,6 +38,7 @@
                             <children>
                                 <VBox layoutY="-4.0" prefHeight="400.0" prefWidth="200.0">
                                     <children>
+                                        <Button mnemonicParsing="false" onAction="#connect" prefWidth="200.0" prefHeight="40.0" text="Verbinden"/>
                                         <Button mnemonicParsing="false" onAction="#login" prefHeight="40.0" prefWidth="200.0" text="Login"/>
                                         <Button mnemonicParsing="false" onAction="#neuerRaum" prefHeight="40.0" prefWidth="200.0" text="Neuer Raum" />
                                         <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="About" />
