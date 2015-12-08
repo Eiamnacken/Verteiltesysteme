@@ -38,6 +38,7 @@
                             <children>
                                 <VBox layoutY="-4.0" prefHeight="400.0" prefWidth="200.0">
                                     <children>
+                                        <Button mnemonicParsing="false" onAction="#login" prefHeight="40.0" prefWidth="200.0" text="Login"/>
                                         <Button mnemonicParsing="false" onAction="#neuerRaum" prefHeight="40.0" prefWidth="200.0" text="Neuer Raum" />
                                         <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="About" />
                                         <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Hilfe" />
