@@ -9,7 +9,7 @@ import java.net.Socket;
  * Created by sven on 18.11.15.
  * Ein Server der jede Verbindung akzeptiert
  */
-public class Receiver implements Runnable {
+public class Receiver extends Thread{
     /**
      * Socket fü die übertragung
      */

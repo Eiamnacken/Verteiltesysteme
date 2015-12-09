@@ -8,7 +8,7 @@ import java.util.Scanner;
 /**
  * Created by sven on 18.11.15.
  */
-public class Transmitter implements Runnable {
+public class Transmitter extends Thread{
 
 
     /**

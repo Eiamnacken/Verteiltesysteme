@@ -12,14 +12,12 @@ import java.net.Socket;
  */
 public class Transceiver implements Runnable,AutoCloseable{
 
-    /**
-     * Socket zum verbinden bzw empfange von TCP streams
-     */
-    private Socket socket;
 
-    private Thread read;
+    private int port;
 
-    private Thread write;
+    private String adress;
+
+    private boolean client=false;
 
     /**
      * Erstellt Transceiver im Client modus
@@ -27,9 +25,9 @@ public class Transceiver implements Runnable,AutoCloseable{
      * @param adress    Adresse an den der Client sendet
      */
     public Transceiver(int port,String adress) throws IOException {
-        this.socket=new Socket(adress, port);
-        this.read = new Thread(new Transmitter(this.socket));
-        this.write = new Thread(new Receiver(this.socket));
+        this.client=true;
+        this.port=port;
+        this.adress=adress;
     }
 
     /**
@@ -37,21 +35,40 @@ public class Transceiver implements Runnable,AutoCloseable{
      * @param port  An dem der Server lauscht
      */
     public Transceiver(int port) throws IOException {
-        this.socket = new ServerSocket(port).accept();
-        this.read = new Thread(new Transmitter(this.socket));
-        this.write = new Thread(new Receiver(this.socket));
+        this.port=port;
+    }
+
+    public void startMultiServer(){
+
+        try (ServerSocket serverSocket = new ServerSocket(this.port)){
+            Socket socket = serverSocket.accept();
+            (new Transmitter(socket)).start();
+            (new Receiver(socket)).start();
+            while (true){
+                socket = serverSocket.accept();
+                (new Receiver(socket)).start();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void run() {
-        this.read.start();
-        this.write.start();
-        try {
-            this.read.join();
-            this.write.join();
-            this.socket.close();
-        } catch (InterruptedException | IOException e) {
-            e.printStackTrace();
+        if (!client) {
+            startMultiServer();
+        }else {
+            try {
+                Socket socket = new Socket(this.adress,this.port);
+                Transmitter transmitter = new Transmitter(socket);
+                Receiver receiver = new Receiver(socket);
+                transmitter.start();
+                receiver.start();
+                transmitter.join();
+                receiver.join();
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
