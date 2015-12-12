@@ -1,16 +1,7 @@
 package com.TCPChat.chat.cs.sockets;
 
-import com.TCPChat.chat.cs.GUI;
-import com.TCPChat.chat.cs.IChat;
-import com.TCPChat.chat.cs.Poller;
-
-import java.net.Socket;
-
-
-
-public class Client {
+/*public class Client {
 	private IChat proxy;
-	private GUI gui;
 	private String ownName;
 	private Poller poller;
 
@@ -34,4 +25,4 @@ public class Client {
 			new Client().startClient();
 		} catch (Exception e) {System.err.println(e);}
 	} 
-} 
+} */

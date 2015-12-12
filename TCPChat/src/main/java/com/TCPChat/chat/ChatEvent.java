@@ -10,6 +10,7 @@ public class ChatEvent implements Serializable {
   public final static int LIST_UPDATE = 1;
   public final static int COMMENT     = 2;
 
+  //TODO abhängig vom Raum machen
   private int eventType;
   private String comment;
   private String[] list;

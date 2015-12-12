@@ -19,8 +19,8 @@ public class Server  {
       while (true) {
         Socket incoming = serverSocket.accept();
         ServerCommunicator communicator = new ServerCommunicator(incoming, manager);
-        communicator.start(); 
+        communicator.start();
       }
-    } catch ( Exception e) { System.err.println(e); } 
+    } catch ( Exception e) { System.err.println(e); }
   } 
 }

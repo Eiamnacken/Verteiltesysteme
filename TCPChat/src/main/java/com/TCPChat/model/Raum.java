@@ -24,8 +24,16 @@ public class Raum {
         }
     }
 
+    public void comment(){
+
+    }
+
     public List<User> getUser(){
         return this.users;
+    }
+
+    public TextArea getRoomChat() {
+        return this.roomChat;
     }
 
     public void addUser(User user){

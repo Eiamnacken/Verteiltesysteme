@@ -2,6 +2,8 @@ package com.TCPChat.view;
 
 import com.TCPChat.chat.ChatEvent;
 import com.TCPChat.chat.IView;
+import com.TCPChat.chat.cs.IChat;
+import com.TCPChat.chat.cs.sockets.ServerProxy;
 import com.TCPChat.model.Raum;
 import com.TCPChat.model.User;
 import javafx.collections.FXCollections;
@@ -10,18 +12,15 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import org.controlsfx.control.HiddenSidesPane;
 import org.controlsfx.control.PopOver;
 
+import java.net.Socket;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Created by sven on 07.12.15.
@@ -43,6 +42,7 @@ public class ChatController implements Initializable, IView{
     private Map<String,Raum> rooms;
     private PopOver popOver = new PopOver();
     private AnchorPane anchorPane;
+    private Optional<IChat>serverProxy;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -65,15 +65,19 @@ public class ChatController implements Initializable, IView{
 
 
     public void sendComment(ActionEvent actionEvent) {
-        //TODO Senden des textes
+
     }
 
-    public void neuerRaum(ActionEvent actionEvent) {
+    public void newRoom(ActionEvent actionEvent) {
         //TODO neuen raum anlegen
     }
 
     public void settings(ActionEvent actionEvent) {
-        //TODO eintellungen erlauben
+        Settings settings = new Settings();
+        settings.showDialog();
+        if (settings.localPort.isPresent()){
+            //TODO setze verbindung
+        }
     }
 
     public void settingsRoom(ActionEvent actionEvent) {
@@ -88,47 +92,18 @@ public class ChatController implements Initializable, IView{
     }
 
     public void login(ActionEvent actionEvent) {
-        Dialog<String> dialog = new Dialog<>();
-        dialog.setTitle("Login");
-        dialog.setHeaderText("Bitte geben sie ihren namen ein");
-        ButtonType buttonType = new ButtonType("Login", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(buttonType,ButtonType.CANCEL);
-
-        GridPane pane = new GridPane();
-        pane.setHgap(10);
-        pane.setVgap(10);
-        pane.setPadding(new Insets(20,150,10,10));
-
-        TextField username = new TextField();
-        username.setPromptText("Username");
-
-        pane.add(new Label("Username:"),0,0);
-        pane.add(username,1,0);
-
-        Node loginButton = dialog.getDialogPane().lookupButton(buttonType);
-        loginButton.setDisable(true);
-
-        // Do some validation (using the Java 8 lambda syntax).
-        username.textProperty().addListener((observable, oldValue, newValue) -> {
-            loginButton.setDisable(newValue.trim().isEmpty());
-        });
-
-        dialog.getDialogPane().setContent(pane);
-
-        javafx.application.Platform.runLater(username::requestFocus);
-
-        dialog.setResultConverter(dialogButton->{
-            if(dialogButton==buttonType){
-                return username.getText();
-            }
-            return null;
-        });
-
-        Optional<String> result = dialog.showAndWait();
+        Login login = new Login();
+        login.showDialog();
         //TODO User anlegen als Host name in der Liste eintragen
-        if (result.isPresent()){
-            User host = new User(result.get());
+        if (login.userName.isPresent()){
+            User host = new User(login.userName.get());
             rooms.get("Hauptraum").addUser(host);
+            try {
+                Socket socket = new Socket(login.adress.get(),Integer.valueOf(login.port.get()));
+                serverProxy = Optional.of(new ServerProxy(socket));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -150,11 +125,13 @@ public class ChatController implements Initializable, IView{
         switch (evt.getEventType()) {
             case ChatEvent.LIST_UPDATE:
                 //TODO Userlist updaten
+                rooms.get()
                 updateUserlist();
                 break;
             case ChatEvent.COMMENT:
                 //TODO abhängig vom raum machen
-                mainRoomText.setText(evt.getComment()+"\n");
+                rooms.get(roomGUI.getSelectionModel().
+                        getSelectedItem().getText()).getRoomChat().setText(evt.getComment()+"\n");
                 break;
         }
     }
@@ -165,4 +142,5 @@ public class ChatController implements Initializable, IView{
 
     public void changeRoom(Event event) {
     }
+
 }

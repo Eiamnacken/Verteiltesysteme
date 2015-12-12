@@ -12,15 +12,18 @@ import java.util.Optional;
  */
 public class Login {
     protected Optional<String> userName;
+    protected  Optional<String> adress;
+    protected  Optional<String> port;
+    private Dialog<String> dialog;
 
     public Login(){
 
     }
 
     public void showDialog(){
-        Dialog<String> dialog = new Dialog<>();
+        dialog = new Dialog<>();
         dialog.setTitle("Login");
-        dialog.setHeaderText("Bitte geben sie ihren namen ein");
+        dialog.setHeaderText("Bitte geben sie ihren namen ein und den Server zu dem sie verbinden wollen");
         ButtonType buttonType = new ButtonType("Login", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(buttonType,ButtonType.CANCEL);
 
@@ -31,9 +34,15 @@ public class Login {
 
         TextField name = new TextField();
         name.setPromptText("Username");
+        TextField adressField = new TextField();
+        TextField portField = new TextField();
 
         pane.add(new Label("Username:"),0,0);
+        pane.add(new Label("Adresse:"),0,1);
+        pane.add(new Label("Port:"),0,2);
         pane.add(name,1,0);
+        pane.add(adressField,1,1);
+        pane.add(portField,1,2);
 
         Node loginButton = dialog.getDialogPane().lookupButton(buttonType);
         loginButton.setDisable(true);
@@ -49,12 +58,17 @@ public class Login {
 
         dialog.setResultConverter(dialogButton->{
             if(dialogButton==buttonType){
-                return name.getText();
+                this.userName = Optional.of(name.getText());
+                this.adress = Optional.of(adressField.getText());
+                this.port = Optional.of(portField.getText());
             }
             return null;
         });
 
-        userName = dialog.showAndWait();
+
+        dialog.showAndWait();
     }
+
+
 
 }

@@ -40,7 +40,7 @@
                                     <children>
                                         <Button mnemonicParsing="false" onAction="#connect" prefWidth="200.0" prefHeight="40.0" text="Verbinden"/>
                                         <Button mnemonicParsing="false" onAction="#login" prefHeight="40.0" prefWidth="200.0" text="Login"/>
-                                        <Button mnemonicParsing="false" onAction="#neuerRaum" prefHeight="40.0" prefWidth="200.0" text="Neuer Raum" />
+                                        <Button mnemonicParsing="false" onAction="#newRoom" prefHeight="40.0" prefWidth="200.0" text="Neuer Raum" />
                                         <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="About" />
                                         <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Hilfe" />
                                         <Button mnemonicParsing="false" onAction="#settings" prefHeight="40.0" prefWidth="200.0" text="Einstellungen" />
