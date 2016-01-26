@@ -1,17 +1,22 @@
 import java.rmi.RemoteException;
 
-/**
- * Created by sven on 26.01.16.
- */
-public class ReceiverImpl implements Receiver{
+public class ReceiverImpl  implements Receiver {
+
+
+    private ReceiverCallback callback;
+
+    public ReceiverImpl() {
+    }
 
 
 
-    public ReceiverImpl() throws RemoteException{
+    public void register(ReceiverCallback callback) throws RemoteException {
+        this.callback = callback;
     }
 
     @Override
-    public void receive(String message) throws RemoteException {
-
+    public void send(String message) throws RemoteException {
+        callback.callback(message);
     }
+
 }
