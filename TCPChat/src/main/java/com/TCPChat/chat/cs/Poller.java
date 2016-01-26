@@ -19,14 +19,14 @@ public class Poller extends Thread {
     this.ownName = name;
   }
   
-  public void run() { 
+  public void run() {
     ChatEvent evt = null;
 
     while (true) {
       try {
-        evt = serverProxy.poll(ownName);  
+        evt = serverProxy.poll(ownName);
         if ( evt != null ) {       
-          view.update(evt);  
+          view.update(evt);
         } 
         Thread.sleep(500);
       } catch (Exception e) { System.err.println(e); break; }

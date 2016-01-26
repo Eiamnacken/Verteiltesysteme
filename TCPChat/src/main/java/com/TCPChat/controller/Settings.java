@@ -1,4 +1,4 @@
-package com.TCPChat.view;
+package com.TCPChat.controller;
 
 import javafx.geometry.Insets;
 import javafx.scene.Node;

@@ -1,9 +1,7 @@
-package com.TCPChat.view;
+package com.TCPChat.controller;
 
 import com.TCPChat.chat.ChatEvent;
 import com.TCPChat.chat.IView;
-import com.TCPChat.chat.cs.IChat;
-import com.TCPChat.chat.cs.sockets.ServerProxy;
 import com.TCPChat.model.Raum;
 import com.TCPChat.model.User;
 import javafx.collections.FXCollections;
@@ -19,7 +17,10 @@ import org.controlsfx.control.PopOver;
 
 import java.net.Socket;
 import java.net.URL;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 /**
@@ -42,7 +43,8 @@ public class ChatController implements Initializable, IView{
     private Map<String,Raum> rooms;
     private PopOver popOver = new PopOver();
     private AnchorPane anchorPane;
-    private Optional<IChat>serverProxy;
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -100,7 +102,7 @@ public class ChatController implements Initializable, IView{
             rooms.get("Hauptraum").addUser(host);
             try {
                 Socket socket = new Socket(login.adress.get(),Integer.valueOf(login.port.get()));
-                serverProxy = Optional.of(new ServerProxy(socket));
+                //serverProxy = Optional.of(new ServerProxy(socket));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -125,7 +127,6 @@ public class ChatController implements Initializable, IView{
         switch (evt.getEventType()) {
             case ChatEvent.LIST_UPDATE:
                 //TODO Userlist updaten
-                rooms.get()
                 updateUserlist();
                 break;
             case ChatEvent.COMMENT:

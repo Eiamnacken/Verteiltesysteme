@@ -22,5 +22,6 @@ dependencies{
 
 
 
+
 mainClassName = 'com.TCPChat.Main'
 
